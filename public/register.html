@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Criar Conta</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="register.css">
+</head>
+
+<body style="background-color: #fff;">
+  <header>
+    <div class="header">
+      <div class="header_top d_none1">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <ul class="conta_icon d_none1">
+                <style>
+                  .abcdf {
+                    position: absolute;
+                    left: 0;
+                  }
+                </style>
+                <li><a class="abcdf" href="index.html"><img src="favicon.ico" alt="#" /> AllInOneShop</a></li>
+              </ul>
+            </div>
+            <style>
+              .textoesquerda {
+                position: absolute;
+                top: 3%;
+                right: 19px;
+                font-family: "Lucida Console", "Courier New", monospace;
+                white-space: nowrap;
+              }
+            </style>
+          </div>
+        </div>
+      </div>
+      <div class="header_midil">
+        <div class="container">
+          <div class=""></div>
+          <div class="row d_flex">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+              <style>
+                .cart-icon {
+                  float: left;
+                  margin-left: 188px;
+                  /* Ajuste o valor conforme necessário */
+                }
+              </style>
+            </div>
+            <style>
+              .ordere {
+                padding-top: 2px;
+                float: right;
+                max-width: 120px;
+                font-size: 14px !important;
+                color: #fff !important;
+                height: 28px;
+                width: 100%;
+                background-color: #183661;
+                display: block;
+                text-align: center;
+                border-radius: 40px;
+              }
+
+              .ordere:hover {
+                background-color: #f2c119;
+              }
+
+              .orderedd {
+                padding-top: 2px;
+                float: right;
+                max-width: 120px;
+                font-size: 14px !important;
+                color: #fff !important;
+                height: 28px;
+                width: 100%;
+                background-color: #183661;
+                display: block;
+                text-align: center;
+                border-radius: 40px;
+              }
+
+              .orderedd:hover {
+                background-color: #f2c119;
+              }
+            </style>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="header_bottom">
+    </div>
+    </div>
+  </header>
+
+  <!-- partial:index.partial.html -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <div class="card">
+
+          <h2 class="card-title text-center">Crie a sua conta</h2>
+          <div class="card-body py-md-4">
+            <div class="form-group">
+              <input type="text" class="form-control" id="name" placeholder="Nome">
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" id="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <input type="phone" class="form-control" id="phone"
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                maxlength="9" placeholder="Numero de telemovel">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="adress" placeholder="Morada">
+            </div>
+            <div class="form-group">
+              <input type="phone" class="form-control" oninput="addDash(this)"
+              type="text" maxlength="8" id="codepostal" placeholder="Codigo Postal">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="city" placeholder="Distrito">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" id="password" placeholder="Palavra-passe">
+              <div  id="icona" onclick="showhide()"> </div>
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" id="Rpassword" placeholder="Confirme a sua Palavra-passe">
+              <div id="iconra" onclick="showhider()"> </div>
+            </div>
+            <div class="d-flex flex-row align-items-center justify-content-between">
+              <a href="login.html" href="#" style="text-decoration: underline;">Entre na sua conta! </a>
+              <button onclick="register()" class="btn btn-primary">Criar Conta</button>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- partial -->
+  <footer>
+    <link href="css/style1.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+
+    <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
+      <div class="row px-xl-5 pt-5">
+        <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+          <h5 class="text-secondary  text-uppercase mb-4">Sobre nós </h5>
+          <p class="mb-4">AllInOneShop: A sua loja perfeita para comprar tudo e mais alguma coisa em apenas um
+            só lugar!</p>
+          <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>AllInOneShop@gmail.com</p>
+          <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+351 913 981 916</p>
+        </div>
+        <div class="col-lg-8 col-md-12">
+          <div class="row">
+            <div class="col-md-4 mb-5">
+              <h5 class="text-secondary text-uppercase mb-4">AllInOneShop</h5>
+              <div class="d-flex flex-column justify-content-start">
+                <a class="text-secondary mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Pagina
+                  inicial</a>
+                <a class="text-secondary mb-2" href="about.html"><i class="fa fa-angle-right mr-2"></i>Sobre nós</a>
+                <a class="text-secondary mb-2" href="products.html"><i class="fa fa-angle-right mr-2"></i>Produtos</a>
+                <a class="text-secondary mb-2" href="news.html"><i class="fa fa-angle-right mr-2"></i>Novidades</a>
+                <a class="text-secondary mb-2" href="fashion.html"><i class="fa fa-angle-right mr-2"></i>Novidades de
+                  moda</a>
+                <a class="text-secondary" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contacte-nos</a>
+              </div>
+            </div>
+            <div class="col-md-6 px-xl-0 text-center text-md-right">
+              <img class="img-fluid" src="images/payments.png" alt="" width="500" height="400">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="col-md-6 px-xl-0">
+          <p class="mb-md-0 text-center text-md-left text-secondary">
+            &copy; 2023 Todos os direitos reservados <a class="text-primary" href="#">AllInOneShop</a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+
+
+
+
+</html>
+
+<script>
+  const password = document.getElementById("password");
+  const icona = document.getElementById("icona");
+
+
+  function showhide() {
+    if (password.type === "password") {
+      password.setAttribute('type', "text");
+      icona.classList.add('hide')
+    } else {
+      password.setAttribute('type', "password");
+      icona.classList.remove('hide')
+    }
+
+  }
+</script>
+<script>
+  const Rpassword = document.getElementById("Rpassword");
+  const iconra = document.getElementById("iconra");
+
+
+  function showhider() {
+    if (Rpassword.type === "password") {
+      Rpassword.setAttribute('type', "text");
+      iconra.classList.add('hide')
+    } else {
+      Rpassword.setAttribute('type', "password");
+      iconra.classList.remove('hide')
+    }
+
+  }
+  function addDash(input) {
+        var value = input.value;
+
+        // Remover traços existentes para evitar duplicação
+        value = value.replace(/-/g, '');
+
+        // Adicionar traço após 4 caracteres
+        if (value.length > 4) {
+            value = value.slice(0, 4) + '-' + value.slice(4);
+        }
+
+        // Atualizar o valor do campo de entrada
+        input.value = value;
+    }
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+
+  function register() {
+
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var phone = document.getElementById("phone").value;
+    var adress = document.getElementById("adress").value;
+    var codepostal = document.getElementById("codepostal").value;
+    var city = document.getElementById("city").value;
+    var password = document.getElementById("password").value;
+    var Rpassword = document.getElementById("Rpassword").value;
+
+    if (!name || !email || !phone || !adress || !password || !city || !codepostal) {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'warning',
+        title: 'Por favor, preencha todos os campos obrigatórios',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      return;
+    }
+
+    if (password == Rpassword) {
+      fetch('http://127.0.0.1:8000/api/register', {
+        method: 'post',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: name,
+          phone: phone,
+          adress: adress,
+          email: email,
+          password: password,
+          city: city,
+          codepostal: codepostal,
+        })
+      }).then(res => res.json())
+        .then(res => checkRegister(res));
+    } else {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "As senhas não coincidem!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+
+  }
+
+  function checkRegister(res) {
+    console.log(res);
+    if (res.message == "CREATED") {
+      var name = document.getElementById("name").value = "";
+      var email = document.getElementById("email").value = "";
+      var phone = document.getElementById("phone").value = "";
+      var adress = document.getElementById("adress").value = "";
+      var codepostal = document.getElementById("codepostal").value = "";
+      var city = document.getElementById("city").value = "";
+      var password = document.getElementById("password").value = "";
+      var Rpassword = document.getElementById("Rpassword").value = "";
+      Swal.fire({
+        title: 'Conta criada com sucesso!',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500
+      }).then(() => {
+        window.location.href = "./login.html";
+      });
+    } else {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'Já existe uma conta com este email! Por favor tente usar outro email ou se ja tiver conta inicie sessão!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
+  }
+</script>

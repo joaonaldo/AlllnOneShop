@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <title>Iniciar sessão</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="./register.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body style="background-color: #fff;">
+  <header>
+    <div class="header">
+      <div class="header_top d_none1">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <ul class="conta_icon d_none1">
+                <style>
+                  .abcdf {
+                    position: absolute;
+                    left: 0;
+                  }
+                </style>
+                <li><a class="abcdf" href="index.html"><img src="favicon.ico" alt="#" /> AllInOneShop</a></li>
+              </ul>
+            </div>
+            <style>
+              .textoesquerda {
+                position: absolute;
+                top: 3%;
+                right: 19px;
+                font-family: "Lucida Console", "Courier New", monospace;
+                white-space: nowrap;
+              }
+            </style>
+          </div>
+        </div>
+      </div>
+      <div class="header_midil">
+        <div class="container">
+          <div class=""></div>
+          <div class="row d_flex">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+              <style>
+                .cart-icon {
+                  float: left;
+                  margin-left: 188px;
+                  /* Ajuste o valor conforme necessário */
+                }
+              </style>
+            </div>
+            <style>
+              footer {
+                background-color: #fff;
+                padding: -2240px;
+                margin-left: -79px;
+                position: absolute;
+                text-align: left;
+              }
+            </style>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="header_bottom">
+    </div>
+    </div>
+  </header>
+  <!-- partial:index.partial.html -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <div class="card">
+          <h2 class="card-title text-center">Iniciar sessão </a></h2>
+          <div class="card-body py-md-4">
+
+            <div class="form-group">
+              <input type="email" class="form-control" id="emailLogin" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" id="passwordLogin" placeholder="Palavra-passe">
+              <div id="icon" onclick="showhide()"> </div>
+
+              <div class="d-flex flex-row align-items-center justify-content-between">
+
+                <a href="register.html" href="#">Ainda não tem conta? </a>
+                <button onclick="login()" class="btn btn-primary">Iniciar sessão</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- partial -->
+    <footer>
+      <link href="css/style1.css" rel="stylesheet">
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+
+      <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
+        <div class="row px-xl-5 pt-5">
+          <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+            <h5 class="text-secondary  text-uppercase mb-4">Sobre nós </h5>
+            <p class="mb-4">AllInOneShop: A sua loja perfeita para comprar tudo e mais alguma coisa em apenas um
+              só lugar!</p>
+            <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>AllInOneShop@gmail.com</p>
+            <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+351 913 981 916</p>
+          </div>
+          <div class="col-lg-8 col-md-12">
+            <div class="row">
+              <div class="col-md-4 mb-5">
+                <h5 class="text-secondary text-uppercase mb-4">AllInOneShop</h5>
+                <div class="d-flex flex-column justify-content-start">
+                  <a class="text-secondary mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Pagina
+                    inicial</a>
+                  <a class="text-secondary mb-2" href="about.html"><i class="fa fa-angle-right mr-2"></i>Sobre nós</a>
+                  <a class="text-secondary mb-2" href="products.html"><i class="fa fa-angle-right mr-2"></i>Produtos</a>
+                  <a class="text-secondary mb-2" href="news.html"><i class="fa fa-angle-right mr-2"></i>Novidades</a>
+                  <a class="text-secondary mb-2" href="fashion.html"><i class="fa fa-angle-right mr-2"></i>Novidades de
+                    moda</a>
+                  <a class="text-secondary" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contacte-nos</a>
+                </div>
+              </div>
+              <div class="col-md-6 px-xl-0 text-center text-md-right">
+                <img class="img-fluid" src="images/payments.png" alt="" width="500" height="400">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+          <div class="col-md-6 px-xl-0">
+            <p class="mb-md-0 text-center text-md-left text-secondary">
+              &copy; 2023 Todos os direitos reservados <a class="text-primary" href="#">AllInOneShop</a>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+</body>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var loggedIn = document.cookie.includes("loggedIn=true");
+    if (loggedIn) {
+      // Usuário está logado, ocultar botão de login
+      var loginButton = document.getElementById('loginButton');
+      loginButton.style.display = 'none';
+    } else {
+      // Usuário não está logado, exibir botão de login
+    }
+  });
+</script>
+
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  function login() {
+    var email = document.getElementById("emailLogin").value;
+    var password = document.getElementById("passwordLogin").value;
+
+    fetch('http://127.0.0.1:8000/api/login', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
+    }).then(res => res.json())
+      .then(res => checkLogin(res));
+
+  }
+
+  function checkLogin(res) {
+    if (res.token != null) {
+      localStorage.setItem('token', res.token); // Armazena o token no localStorage
+      localStorage.setItem('userLoggedIn', 'true'); // Define que o usuário está logado
+
+      // Armazene outros dados do usuário que deseja enviar para a página de checkout
+      localStorage.setItem('userData', JSON.stringify(res.userData));
+
+      Swal.fire({
+        title: 'Login efetuado com sucesso!',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500
+      }).then(() => {
+        window.location.href = "./index.html";
+      });
+    } else {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'Email ou senha estão incorretos!',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
+  }
+</script>
+
+
+
+<script>
+  const password = document.getElementById("passwordLogin");
+  const icon = document.getElementById("icon");
+
+
+  function showhide() {
+    if (password.type === "password") {
+      password.setAttribute('type', "text");
+      icon.classList.add('hide')
+    } else {
+      password.setAttribute('type', "password");
+      icon.classList.remove('hide')
+    }
+
+  }
+</script>

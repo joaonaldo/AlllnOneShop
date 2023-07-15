@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do novidades</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .no-news-message {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .description {
+            margin-bottom: 5px;
+            /* Ajuste o valor conforme desejado */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .news_text {
+            margin-top: -10px;
+            text-align: justify;
+            flex-grow: 1;
+            word-wrap: break-word;
+            /* Quebra a linha quando atinge o limite da página */
+            word-break: break-word;
+            /* Quebra a palavra em várias linhas, se necessário */
+        }
+
+        .news_text p {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            /* Define o número máximo de linhas que serão exibidas */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            /* Adiciona reticências para indicar que o texto foi cortado */
+        }
+
+        .news {
+            border: 1px solid #ecf3fc;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #e6f4e6;
+            display: flex;
+            /* Adicionado: exibir como flexbox */
+        }
+
+        .news .content {
+            flex-grow: 1;
+            padding-left: 20px;
+        }
+
+        .news .title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .news .description {
+            margin-bottom: 10px;
+        }
+
+        .news .date {
+            margin-bottom: 10px;
+        }
+
+        .news .image {
+            text-align: flex-start;
+            /* Alterado: alinhar à direita */
+            margin-left: 10px;
+            /* Modificado: mover a imagem para a esquerda */
+            margin-right: 40px;
+            /* Adicionado: espaço entre a imagem e o conteúdo */
+        }
+
+        .news .image img {
+            max-width: 250px;
+            max-height: 200px;
+        }
+
+        .news .actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+
+        h5 {
+            font-size: 14px;
+        }
+
+        .blink {
+            animation: none;
+        }
+
+        .blink:hover {
+            animation: blink 0.5s infinite;
+        }
+
+        .header_top {
+            width: 100%;
+            background-color: #ecf3fc;
+            padding: 10px 0;
+        }
+
+     .create-news-button button {
+    background-color: #3127b3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .search-container {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 5px;
+            padding-left: 20px;
+        }
+
+        .search-container input[type="text"] {
+            border: none;
+            padding: 5px;
+            padding-right: 30px;
+            /* Ajuste o valor do padding-right conforme necessário */
+            font-size: 16px;
+            outline: none;
+            box-sizing: border-box;
+            /* Adiciona a propriedade box-sizing */
+        }
+
+
+        .search-container img {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+    </style>
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body>
+    <header>
+        <style>
+            .custom-button {
+                border: none;
+                background: none;
+                cursor: pointer;
+            }
+        
+            .custom-button:focus {
+                outline: none;
+            }
+        </style>
+        
+        <div class="header_top d_none1">
+            <ul class="conta_icon d_none1">
+                <div style="display: flex; align-items: center; justify-content: flex-start;">
+                    <button onclick="window.location.href='admmainpage.html'" class="custom-button blink">
+                        <img src="favicon.ico" style="margin-right: 5px;">
+                        <h9 style="margin: 0;">AllInOneShop Administração</h9>
+                    </button>
+                </div>
+            </ul>
+        </div>
+        
+        
+        
+    </header>
+
+    <div class="container">
+        <div style="position: relative; left: 450px; ">
+            <h2 style="position: relative; left: -70px;">Gerir Novidades criadas</h2>
+            <div style="position: relative; left: -520px; top: 30px;" class="create-news-button">
+                <button onclick="createNews()">+</button>
+            </div>
+        </div>
+
+        <div style="position: relative; top: 60px; left: 76px;" class="search-container">
+            <input type="text" id="search-input" onclick="searchNews()" placeholder="Pesquisar">
+            <img src="Images/49116.png" onclick="searchNews()" alt="Buscar">
+        </div>
+    </div>
+
+    <div style="position: relative; top: 50px;" id="news-container"></div>
+    <link rel="stylesheet" href="css/button.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.css">
+    <script>
+        function createNews() {
+            location.replace("./newscreate.html");
+        }
+    </script>
+
+    <script>
+        function buscarDados() {
+            fetch('http://127.0.0.1:8000/api/news')
+                .then(response => response.json())
+                .then(data => exibirDados(data))
+                .catch(error => console.log('Ocorreu um erro:', error));
+        }
+
+        function exibirDados(data) {
+            const container = document.getElementById('news-container');
+            container.innerHTML = '';
+
+            if (data.length === 0) {
+                const message = document.createElement('p');
+                message.classList.add('no-news-message');
+                message.textContent = 'Nenhuma notícia encontrada.';
+                container.appendChild(message);
+                return;
+            }
+
+            data.forEach((news, index) => {
+                const newsItem = document.createElement('div');
+                newsItem.classList.add('news');
+
+                const content = document.createElement('div');
+                content.classList.add('content');
+
+                const title = document.createElement('div');
+                title.classList.add('title');
+                title.textContent = news.title;
+                content.appendChild(title);
+
+                const description = document.createElement('p');
+                description.classList.add('description');
+                description.innerHTML = '<span class="first-line">' + news.description + '</span>';
+                content.appendChild(description);
+
+                const date = document.createElement('div');
+                date.classList.add('date');
+                date.textContent = news.date;
+                content.appendChild(date);
+
+                newsItem.appendChild(content);
+
+                const imageContainer = document.createElement('div');
+                imageContainer.classList.add('image');
+                const image = document.createElement('img');
+                const imagePath = './uploads/' + news.image1;
+                image.src = imagePath;
+                imageContainer.appendChild(image);
+                newsItem.appendChild(imageContainer);
+
+                const actions = document.createElement('div');
+                actions.classList.add('actions');
+
+                function newsdetails(id) {
+                    // Redirecionar para a página de edição do produto com base no ID
+                    window.location.href = `newsdetails.html?id=${id}`;
+                }
+
+                function newsedit(id) {
+                    // Redirecionar para a página de edição do produto com base no ID
+                    window.location.href = `newsedit.html?id=${id}`;
+                }
+                // Dentro da função exibirDados, onde o botão de edição é criado
+                const editButton = document.createElement('button');
+                editButton.className = 'btn btn-edit'; // Adicione as classes existentes do botão
+                editButton.innerHTML = '<i class="fas fa-edit"></i> Editar';
+                editButton.addEventListener('click', function () {
+                    newsedit(news.id);
+                });
+
+                const detailsButton = document.createElement('button');
+                detailsButton.className = 'btn btn-details'; // Adicione as classes existentes do botão
+                detailsButton.innerHTML = '<i class="fas fa-info-circle"></i> Detalhes';
+                detailsButton.addEventListener('click', function () {
+                    newsdetails(news.id);
+                });
+
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'btn btn-delete';
+                deleteButton.innerHTML = '<i class="fas fa-trash"></i> Eliminar';
+                deleteButton.addEventListener('click', function () {
+                    deletenews(news.id);
+                });
+
+                actions.appendChild(editButton);
+                actions.appendChild(detailsButton);
+                actions.appendChild(deleteButton);
+                newsItem.appendChild(actions);
+
+                container.appendChild(newsItem);
+            });
+        }
+        window.onload = buscarDados;
+
+        function deletenews(id) {
+            const url = `http://localhost:8000/api/news/${id}`;
+            const requestOptions = {
+                method: 'DELETE'
+            };
+
+            Swal.fire({
+                title: 'Tem a certeza?',
+                text: "Esta ação não pode ser revertida!",
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonColor: '#08bb26',
+                cancelButtonText: 'Cancelar',
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Eliminar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(url, requestOptions)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('News deleted:', data.message);
+                            buscarDados();
+                            Swal.fire(
+                                'Eliminado!',
+                                'A novidade foi eliminada com sucesso!',
+                                'success'
+                            );
+                        })
+                        .catch(error => {
+                            console.log('An error occurred:', error);
+                            Swal.fire(
+                                'Error',
+                                'An error occurred while deleting the news.',
+                                'error'
+                            );
+                        });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                }
+            });
+        }
+
+        function searchNews() {
+            const searchInput = document.getElementById('search-input');
+            const NewsTitle = searchInput.value.trim();
+
+            let url = 'http://localhost:8000/api/News/search-by-title';
+
+            if (NewsTitle !== '') {
+                url += `?title=${encodeURIComponent(NewsTitle)}`;
+            }
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    exibirDados(data);
+                })
+                .catch(error => console.log('Ocorreu um erro:', error));
+        }
+
+        const searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('keydown', event => {
+            if (event.keyCode === 13) {
+                searchNews();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

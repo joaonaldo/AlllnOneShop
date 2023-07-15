@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <title>Criar Novidades</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+  <!-- Adicione o arquivo de localização para o calendário em português -->
+  <script src="https://code.jquery.com/ui/1.13.2/i18n/jquery-ui-i18n.min.js"></script>
+
+  <style>
+    /* Estilos personalizados para a página de criação de Novidades */
+    .container {
+      max-width: 550px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .custom-file-input {
+      display: none;
+      cursor: pointer;
+    }
+
+    /* Estilo personalizado para ocultar as setas do campo de número */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    form {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    .half-width {
+      width: calc(50% - 5px);
+      margin-right: 10px;
+    }
+
+    input[type="number"],
+    input[type="abc"] {
+      height: 30px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .custom-button {
+      display: inline-block;
+      background-color: #0847a0;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .custom-button:hover {
+      background-color: #2e089f;
+    }
+
+    .blink {
+      animation: none;
+    }
+
+    .blink:hover {
+      animation: blink 0.5s infinite;
+    }
+
+    @keyframes blink {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    input[type="text"]:focus,
+    input[type="date"]:focus {
+      border: 1px solid black;
+    }
+
+    #file-count-space {
+      height: 18px;
+      /* Ajuste a altura conforme necessário */
+    }
+
+    /* Estilo personalizado para o calendário */
+    .ui-datepicker {
+      width: 220px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      background: #cac6ca;
+    }
+
+    .ui-datepicker-header {
+      background-color: #0847a0;
+      color: #fff;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .ui-datepicker-title {
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+    }
+
+    .ui-datepicker-prev,
+    .ui-datepicker-next {
+      background-color: #0847a0;
+      border: none;
+      color: #fff;
+      padding: 5px;
+      cursor: pointer;
+    }
+
+    .ui-datepicker-prev:hover,
+    .ui-datepicker-next:hover {
+      background-color: #2e089f;
+    }
+
+    .ui-datepicker-calendar {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+
+    .ui-datepicker-calendar th,
+    .ui-datepicker-calendar td {
+      text-align: center;
+      padding: 5px;
+    }
+
+    .ui-datepicker-calendar td {
+      cursor: pointer;
+    }
+
+    .ui-datepicker-calendar .ui-state-default {
+      border: 1px solid #ccc;
+      color: #333;
+    }
+
+    .ui-datepicker-calendar .ui-state-default:hover {
+      background-color: #eee;
+    }
+
+    .ui-datepicker-calendar .ui-state-active {
+      background-color: #0847a0;
+      color: #fff;
+    }
+    .custom-file-input-label {
+      border: 2px solid black;
+      padding: 5px;
+      cursor: pointer;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div style="margin-left: -55%;">
+      <div class="header_top d_none1">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <ul class="conta_icon d_none1">
+                <div style="display: flex; align-items: center; justify-content: flex-start;">
+                  <a href="admmainpage.html" style="display: flex; align-items: center; text-decoration: none;" class="blink">
+                    <img src="favicon.ico" style="margin-right: 5px;">
+                    <h5 style="margin: 0;">AllInOneShop Administração</h5>
+                  </a>
+                </div>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container" style="text-align: left;">
+    <h1>Criar Novidade</h1>
+
+    <div>
+      <label for="nome">Titulo</label>
+      <input type="text" id="title">
+    </div>
+    <div>
+      <label for="descricao">Descrição:</label>
+      <textarea id="description" rows="10" cols="50"></textarea>
+    </div>
+    <div style="display: flex;">
+      <div style="width: 50%;">
+        <label class="custom-file-input-label" for="image1">Selecione uma imagem</label>
+        <input type="file" id="image1" style="display: none;" accept="image/*">
+        <p id="file-count"></p>
+        <div id="file-count-space"></div>
+      </div>
+      <div style="margin-left: 80px;">
+        <div style="margin-left: 0px;">
+          <label for="date">Data</label>
+        </div>
+        <div>
+          <div style="position: relative; margin-left:60px; margin-top: -30px;">
+            <input type="text" id="date" autocomplete="off" style="padding-right: 20px;">
+            <img src="images/1651909_calendar_christmas_date_icon.png"
+              style="position: absolute; right: 5px; top: 40%; transform: translateY(-50%); width: 16px; height: 16px;">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+    </div>
+    <div style="padding-left: 400px; height: 50%; position: inherit; margin-top: 0%;">
+      <button type="button" onclick="createNews()" class="custom-button">Criar Novidade</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script>
+
+    function createNews() {
+      var title = document.getElementById("title").value;
+      var date = document.getElementById("date").value;
+      var description = document.getElementById("description").value;
+      var image1 = document.getElementById("image1").files; // Obtenha os arquivos selecionados
+
+      if (!title || !date || !description || image1.length === 0) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'warning',
+          title: 'Por favor, preencha todos os campos obrigatórios',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        return;
+      }
+
+      var formData = new FormData(); // Crie um objeto FormData para enviar os dados
+      formData.append("title", title);
+      formData.append("date", date);
+      formData.append("description", description);
+      for (var i = 0; i < image1.length; i++) {
+        formData.append("image1", image1[i]);
+      }
+
+      fetch('http://127.0.0.1:8000/api/News', {
+        method: 'post',
+        body: formData // Envie o objeto FormData como corpo da requisição
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) { 
+          } else {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Novidade criada com sucesso',
+              showConfirmButton: false,
+              timer: 1500
+            }).then(() => {
+              window.location.href = "./newsmainpage.html";
+            });
+            document.getElementById("title").value = "";
+            document.getElementById("date").value = "";
+            document.getElementById("description").value = "";
+            document.getElementById("image1").value = "";
+
+            document.getElementById('file-count').textContent = "imagem selecionada: 0";
+
+          }
+        })
+        .catch(error => {
+          console.error(error);
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Erro ao criar novidade',
+            showConfirmButton: false,
+            timer: 1500
+          });
+        });
+    }
+
+    $(function () {
+      $("#date").datepicker({
+        dateFormat: "dd/mm/yy",
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "1900:2050",
+        dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+        dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+        monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+      });
+    });
+
+    document.getElementById("image1").addEventListener("change", function (event) {
+      var fileCount = event.target.files.length;
+      document.getElementById("file-count").innerText = fileCount + " imagem selecionada";
+    });
+  </script>
+</body>
+
+</html>

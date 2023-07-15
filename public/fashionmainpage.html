@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Gerir novidades de Moda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .no-news-message {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .description {
+            margin-bottom: 5px;
+            /* Ajuste o valor conforme desejado */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .fashion_text {
+            margin-top: -10px;
+            text-align: justify;
+            flex-grow: 1;
+            word-wrap: break-word;
+            /* Quebra a linha quando atinge o limite da página */
+            word-break: break-word;
+            /* Quebra a palavra em várias linhas, se necessário */
+        }
+
+        .fashion_text p {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            /* Define o número máximo de linhas que serão exibidas */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            /* Adiciona reticências para indicar que o texto foi cortado */
+        }
+
+        .fashion {
+            border: 1px solid #ecf3fc;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #e6f4e6;
+            display: flex;
+            /* Adicionado: exibir como flexbox */
+        }
+
+        .fashion .content {
+            flex-grow: 1;
+            padding-left: 20px;
+        }
+
+        .fashion .title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .fashion .description {
+            margin-bottom: 10px;
+        }
+
+        .fashion .date {
+            margin-bottom: 10px;
+        }
+
+        .fashion .image {
+            text-align: flex-start;
+            /* Alterado: alinhar à direita */
+            margin-left: 10px;
+            /* Modificado: mover a imagem para a esquerda */
+            margin-right: 40px;
+            /* Adicionado: espaço entre a imagem e o conteúdo */
+        }
+
+        .fashion .image img {
+            max-width: 250px;
+            max-height: 200px;
+        }
+
+        .fashion .actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        h5 {
+            font-size: 14px;
+        }
+
+        .blink {
+            animation: none;
+        }
+
+        .blink:hover {
+            animation: blink 0.5s infinite;
+        }
+
+        .header_top {
+            width: 100%;
+            background-color: #ecf3fc;
+            padding: 10px 0;
+        }
+
+        .create-fashion-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            margin-left: -1200px;
+        }
+
+        .create-fashion-button button {
+            background-color: #3127b3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .search-container {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 5px;
+            padding-left: 20px;
+        }
+
+        .search-container input[type="text"] {
+            border: none;
+            padding: 5px;
+            padding-right: 30px;
+            /* Ajuste o valor do padding-right conforme necessário */
+            font-size: 16px;
+            outline: none;
+            box-sizing: border-box;
+            /* Adiciona a propriedade box-sizing */
+        }
+
+
+        .search-container img {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <style>
+        .custom-button {
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        .custom-button:focus {
+            outline: none;
+        }
+    </style>
+    <header>
+        <div class="header_top d_none1">
+            <ul class="conta_icon d_none1">
+                <div style="display: flex; align-items: center; justify-content: flex-start;">
+                    <button onclick="window.location.href='admmainpage.html'" class="custom-button blink">
+                        <img src="favicon.ico" style="margin-right: 5px;">
+                        <h9 style="margin: 0;">AllInOneShop Administração</h9>
+                    </button>
+                </div>
+            </ul>
+        </div>
+    </header>
+
+    <div class="container">
+        <div style="position: relative; left: 380px;">
+            <h2 style="position: relative; left: -55px;">Gerir Novidades de moda criadas</h2>
+            <div style="position: relative; left: -60px; top: 40px;" class="create-fashion-button">
+                <button onclick="createfashion()">+</button>
+            </div>
+        </div>
+
+        <div style="position: relative; top: 60px; left: 76px;" class="search-container">
+            <input type="text" id="search-input" placeholder="Pesquisar">
+            <img src="Images/49116.png" onclick="searchFashion()" alt="Buscar">
+        </div>
+    </div>
+    <div style="position: relative; top: 40px;" id="fashion-container"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.css">
+    <script>
+        function createfashion() {
+            location.replace("./fashioncreate.html");
+        }
+    </script>
+
+    <script>
+        function buscarDados() {
+            fetch('http://127.0.0.1:8000/api/fashion')
+                .then(response => response.json())
+                .then(data => exibirDados(data))
+                .catch(error => console.log('Ocorreu um erro:', error));
+        }
+
+        function exibirDados(data) {
+            const container = document.getElementById('fashion-container');
+            container.innerHTML = '';
+
+
+            if (data.length === 0) {
+                const message = document.createElement('p');
+                message.classList.add('no-news-message');
+                message.textContent = 'Nenhuma notícia de Moda encontrada.';
+                container.appendChild(message);
+                return;
+            }
+
+            data.forEach((fashion, index) => {
+                const fashionItem = document.createElement('div');
+                fashionItem.classList.add('fashion');
+
+                const content = document.createElement('div');
+                content.classList.add('content');
+
+                const title = document.createElement('div');
+                title.classList.add('title');
+                title.textContent = fashion.title;
+                content.appendChild(title);
+
+                const description = document.createElement('p');
+                description.classList.add('description');
+                description.innerHTML = '<span class="first-line">' + fashion.description + '</span>';
+                content.appendChild(description);
+
+                const date = document.createElement('div');
+                date.classList.add('date');
+                date.textContent = fashion.date;
+                content.appendChild(date);
+
+                fashionItem.appendChild(content);
+
+                const imageContainer = document.createElement('div');
+                imageContainer.classList.add('image');
+                const image = document.createElement('img');
+                const imagePath = './uploads/' + fashion.images1;
+                image.src = imagePath;
+                imageContainer.appendChild(image);
+                fashionItem.appendChild(imageContainer);
+
+                const actions = document.createElement('div');
+                actions.classList.add('actions');
+
+                const editButton = document.createElement('button');
+                editButton.className = 'btn btn-edit'; // Adicione as classes existentes do botão
+                editButton.innerHTML = '<i class="fas fa-edit"></i> Editar';
+                editButton.addEventListener('click', function () {
+                    fashionedit(fashion.id);
+                });
+
+                const detailsButton = document.createElement('button');
+                detailsButton.className = 'btn btn-details'; // Adicione as classes existentes do botão
+                detailsButton.innerHTML = '<i class="fas fa-info-circle"></i> Detalhes';
+                detailsButton.addEventListener('click', function () {
+                    fashiondetails(fashion.id);
+                });
+
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'btn btn-delete';
+                deleteButton.innerHTML = '<i class="fas fa-trash"></i> Eliminar';
+                deleteButton.addEventListener('click', function () {
+                    deletefashion(fashion.id);
+                });
+
+                actions.appendChild(editButton);
+                actions.appendChild(detailsButton);
+                actions.appendChild(deleteButton);
+                fashionItem.appendChild(actions);
+
+                container.appendChild(fashionItem);
+            });
+        }
+        window.onload = buscarDados;
+
+        function deletefashion(id) {
+            const url = `http://localhost:8000/api/fashion/${id}`;
+            const requestOptions = {
+                method: 'DELETE'
+            };
+
+            Swal.fire({
+                title: 'Tem a certeza?',
+                text: "Esta ação não pode ser revertida!",
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonColor: '#08bb26',
+                cancelButtonText: 'Cancelar',
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Eliminar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(url, requestOptions)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('News deleted:', data.message);
+                            // Update the data display after deletion
+                            buscarDados();
+                            Swal.fire(
+                                'Eliminado!',
+                                'A novidade de Moda eliminada com sucesso!',
+                                'success'
+                            );
+                        })
+                        .catch(error => {
+                            console.log('An error occurred:', error);
+                            Swal.fire(
+                                'Error',
+                                'An error occurred while deleting the news.',
+                                'error'
+                            );
+                        });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                }
+            });
+        }
+
+        function fashiondetails(id) {
+            window.location.href = `fashiondetails.html?id=${id}`;
+        }
+
+        function fashionedit(id) {
+            window.location.href = `fashionedits.html?id=${id}`;
+        }
+
+        function searchFashion() {
+            const searchInput = document.getElementById('search-input');
+            const fashionTitle = searchInput.value.trim();
+
+            let url = 'http://localhost:8000/api/fashion/search-by-title';
+
+            if (fashionTitle !== '') {
+                url += `?title=${encodeURIComponent(fashionTitle)}`;
+            }
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    exibirDados(data);
+                })
+                .catch(error => console.log('Ocorreu um erro:', error));
+        }
+        const searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('keydown', event => {
+            if (event.keyCode === 13) {
+                searchFashion();
+            }
+        });
+
+    </script>
+    <link rel="stylesheet" href="css/button.css">
+</body>
+
+</html>

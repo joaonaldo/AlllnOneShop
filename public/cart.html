@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Carrinho de compras</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <style>
+        .product-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            align-items: center;
+            /* Adicionado para centralizar verticalmente */
+        }
+
+        .fixed-size-image {
+            width: 20%;
+            height: 15%;
+        }
+
+        .disabled-button {
+            cursor: not-allowed;
+        }
+    </style>
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<script>
+    window.addEventListener('load', function () {
+        // Quando a página terminar de carregar, oculta o loader
+        var loader = document.querySelector('.loader_bg');
+        loader.style.display = 'none';
+    });
+</script>
+
+<body>
+    <!-- loader  -->
+    <div class="loader_bg">
+        <div class="loader"><img src="images/loading__.gif" alt="#" /></div>
+    </div>
+    <header>
+        <script>
+             var popupOpened = false;
+  
+  function togglePopup() {
+     var popup = document.getElementById("popup");
+     if (!popupOpened) {
+        popup.style.display = "block";
+        setTimeout(function () {
+           popup.classList.add("opened");
+        }, 10);
+        popupOpened = true;
+     } else {
+        popup.classList.remove("opened");
+        setTimeout(function () {
+           popup.style.display = "none";
+        }, 300);
+        popupOpened = false;
+     }
+  }
+  
+  function showPurchaseHistory() {
+    location.replace('purchasehistory.html');
+  }
+  
+  document.addEventListener("click", function (event) {
+   var popup = document.getElementById("popup");
+   var toggleButton = document.querySelector(".orderedd");
+   if (popupOpened && event.target !== popup && event.target !== toggleButton) {
+       popup.style.display = "none";
+       popupOpened = false;
+       // Limpar o temporizador se o menu for fechado por um clique fora dele
+       clearTimeout(popupTimeout);
+   }
+  });
+        </script>
+        <!-- header inner -->
+        <div class="header">
+           <div class="header_top d_none1">
+              <div class="container">
+                 <div class="row">
+                    <div class="col-md-4">
+                       <ul class="conta_icon d_none1">
+                          <style>
+                             .abcdf {
+                                position: absolute;
+                                left: 0;
+                             }
+                          </style>
+                          <li><a class="abcdf" href="index.html"><img src="favicon.ico" alt="#" /> AlllnOneShop</a></li>
+                       </ul>
+                    </div>
+  
+                 </div>
+              </div>
+           </div>
+           <div class="header_midil">
+              <div class="container">
+                 <div class=""></div>
+                 <div class="row d_flex">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                       <style>
+                          .cart-icon {
+                             float: left;
+                             margin-left: 188px;
+                             /* Ajuste o valor conforme necessário */
+                          }
+  
+                          .car-icon {
+                             float: left;
+        
+                             /* Cor, espessura e estilo da borda */
+                             border-radius: 0;
+                             /* Bordas retas */
+                             display: flex;
+                             align-items: center;
+                             justify-content: center;
+                             /* Alinha os itens horizontalmente */
+                             width: 40px;
+                             /* Largura do ícone */
+                             height: 40px;
+                             /* Altura do ícone */
+                          }
+  
+  
+                          #cart-badge {
+                             position: absolute;
+                             background-color: red;
+                             color: white;
+                             border-radius: 50%;
+                             width: 20px;
+                             height: 20px;
+                             display: flex;
+                             justify-content: center;
+                             align-items: center;
+                             font-size: 10px;
+                             top: -10px;
+                             /* Ajuste a posição vertical conforme necessário */
+                             right: -10px;
+                          }
+  
+                          .popup {
+                             display: none;
+                             position: absolute;
+                             top: -22px;
+                             left: 243px;
+                             /* Ajuste o valor conforme necessário */
+                             width: 200px;
+                             /* Ajuste a largura conforme necessário */
+                             background-color: #e9e8f7c6;
+                             border: 1px solid #dddddd;
+                             padding: 10px;
+                             border-radius: 5px;
+                             z-index: 9999;
+                             text-align: center;
+                             overflow: hidden;
+                             max-height: 0;
+                             transition: max-height 0.5s ease;
+                          }
+  
+                          .popup.opened {
+                             max-height: 200px;
+                             /* Ajuste a altura máxima conforme necessário */
+                          }
+  
+  
+  
+                          .popup button {
+                             display: block;
+                             margin-bottom: 10px;
+                             padding: 8px 16px;
+                             font-size: 14px;
+                             border: none;
+                             background-color: #f9f9f9;
+                             color: #333333;
+                             cursor: pointer;
+                          }
+  
+                          .popup button.terminarSessao {
+                             width: 100%;
+                          }
+  
+                          .popup button.historico {
+                             width: 100%;
+                          }
+  
+  
+  
+                          .popup button.redButton {
+                             background-color: #ff0000;
+                             color: #ffffff;
+                          }
+                       </style>
+                       <ul>
+                          <div onclick="togglePopup()" style="position: absolute; left: 10px; top: 48px;">
+                             <img class="orderedd" src="Images/menu_icon.png">
+                             <span class="menu-text" style="text-indent: 85px; font-size: 18px;"></span>
+                             <a style="position: relative; top: -106px; right: -340px; color: rgb(0, 0, 0); font-size: 18px; cursor: pointer;">Menu</a>
+                         </div>
+  
+                          <div id="popup" class="popup">
+                             <button onclick="showPurchaseHistory()" class="historico">Histórico de compras</button>
+                             <button id="logoutbut" onclick="logout()" class="redButton terminarSessao">Terminar Sessão</button>
+                          </div>
+  
+                          <div class="ordere" style="position: absolute; left: 320px; top: -58px;">
+                             <button onclick="gotologin()" id="butlog" class="ordere">Iniciar Sessão</button>
+                          </div>
+                       </ul>
+                    </div>
+                    <style>
+                       .ordere {
+                          padding-top: 2px;
+                          top: 800px;
+                          float: right;
+                          max-width: 120px;
+                          font-size: 14px !important;
+                          color: #fff !important;
+                          height: 28px;
+                          width: 100%;
+                          background-color: #183661;
+                          display: block;
+                          text-align: center;
+                          border-radius: 40px;
+                       }
+  
+                       .ordere:hover {
+                          background-color: #f2c119;
+                       }
+  
+                       .orderedd {
+                          padding-top: 2px;
+                          padding-bottom: 4px;
+                          float: right;
+                          max-width: 100px;
+                          font-size: 14px !important;
+                          color: #fff !important;
+                          height: 35px;
+                          /* Aumenta o valor da largura */
+                          display: block;
+                          text-align: center;
+                          border-radius: 4px;
+                          cursor: pointer;
+                          position: relative;
+                          top: -110px;
+                          left: 200px;
+                          width: 55px;
+                          position: relative;
+                          /* Alteramos para position: relative */
+                          z-index: 1;
+                       }
+  
+                       .menu-text {
+                          position: absolute;
+                          top: -92px;
+                          left: 332px;
+                          height: 48px;
+                          transform: translate(-50%, -50%);
+                          padding: 2px 10px;
+                          font-size: 14px;
+                          background-color: #c4bedb4a;
+                          border-radius: 4px;
+                          width: 200px;
+                          cursor: pointer;
+                          text-transform: initial;
+                       }
+  
+                       .sidebar h3 {
+                          font-family: "Arial", sans-serif;
+                          font-size: 18px;
+                          color: #000000;
+                          margin-bottom: 10px;
+                       }
+  
+                       .filter-bar {
+                          display: flex;
+                          align-items: center;
+                          margin-bottom: 20px;
+                       }
+  
+                       .filter-bar label {
+                          margin-right: 10px;
+                          font-weight: bold;
+                       }
+  
+                       .filter-bar select {
+                          padding: 8px;
+                          border: 1px solid #ccc;
+                          border-radius: 4px;
+                          font-size: 16px;
+                       }
+  
+                       .filter-bar select:focus {
+                          outline: none;
+                          border-color: #4caf50;
+                       }
+                    </style>
+                 </div>
+  
+              </div>
+           </div>
+        </div>
+        <div style="position: relative; top: -60px;">
+           <div class="header_bottom">
+              <div class="container">
+                 <div class="row">
+                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                       <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                          <button class="navbar-toggler" type="button" data-toggle="collapse"
+                             data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false"
+                             aria-label="Toggle navigation">
+                             <span class="navbar-toggler-icon"></span>
+                          </button>
+                          <div class="collapse navbar-collapse" id="navbarsExample04">
+                             <ul class="navbar-nav mr-auto">
+                                <li class="nav-item">
+                                   <a class="nav-link" href="index.html">Inicio</a>
+                                </li>
+                                <li class="nav-item">
+                                   <a class="nav-link" href="about.html">Sobre nós</a>
+                                </li>
+                                <li class="nav-item">
+                                   <a class="nav-link" href="products.html">Produtos</a>
+                                </li>
+                                <li class="nav-item">
+                                   <a class="nav-link" href="fashion.html">Moda</a>
+                                </li>
+                                <li class="nav-item">
+                                   <a class="nav-link" href="news.html">Novidades</a>
+                                </li>
+                                <li class="nav-item">
+                                   <a class="nav-link" href="contact.html">Sugestão</a>
+                                </li>
+                             </ul>
+                          </div>
+                       </nav>
+                    </div>
+                    <div class="col-md-4">
+                       <div style="position: relative; left: -35px;" class="search">
+                          <input class="form_sea" type="text" autocomplete="off" placeholder="Pesquisa" name="search">
+                          <button type="submit" class="seach_icon"><i class="fa fa-search"></i></button>
+                       </div>
+                    </div>
+                    <div style="position: absolute; right: 20px; top: -40px;">
+                       <li style="border-color: white;" class="cart-icon">
+                          <div style="position: absolute; right: 125px; top: -0px;">
+                             <a href="cart.html">
+                                <div style="position: relative; bottom: -58px; left: 110px;" class="car-icon">
+                                   <img src="images/3669231_cart_shopping_ic_icon.png" alt="#" />
+                                   <span id="cart-badge"></span>
+                                </div>
+                             </a>
+                          </div>
+                       </li>
+                    </div>
+                 </div>
+              </div>
+           </div>
+     </header>
+
+    <!-- Cart Start -->
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-lg-8 table-responsive mb-5">
+                <table class="table table-light table-borderless table-hover text-center mb-0">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Produto(s)</th>
+                            <th>Preço</th>
+                            <th>Quantidade</th>
+                            <th>Remover</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-items">
+                        <tr class="align-middle">
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-4">
+
+                <!--<form class="mb-30" action="">
+                        <div class="input-group">
+                            <input type="text" class="form-control border-0 p-4" placeholder="Coupon Code">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary">Apply Coupon</button>
+                            </div>
+                        </div>
+                    </form> -->
+
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Sumário
+                        do carrinho</span></h5>
+                <div class="bg-light p-30 mb-5">
+                    <div class="border-bottom pb-2">
+                        <div class="d-flex justify-content-between mb-3">
+                            <h6>Subtotal</h6>
+                            <h6 id="subtotal"></h6>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <h6 class="font-weight-medium">Portes de envio</h6>
+                            <h6 id="shipping" class="font-weight-medium"></h6>
+                        </div>
+                    </div>
+                    <div class="pt-2">
+                        <div class="d-flex justify-content-between mt-2">
+                            <h5>Total</h5>
+                            <h5 id="total"></h5>
+                        </div>
+                        <div id="checkout-button-wrapper">
+                            <button id="checkout-button"
+                                class="btn btn-block btn-primary font-weight-bold my-3 py-3">PROSSEGUIR PARA
+                                COMPRA</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Cart End -->
+    <footer>
+        <link href="css/style1.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+
+        <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
+            <div class="row px-xl-5 pt-5">
+                <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+                    <h5 class="text-secondary  text-uppercase mb-4">Sobre nós </h5>
+                    <p class="mb-4">AllInOneShop: A sua loja perfeita para comprar tudo e mais alguma coisa em apenas um
+                        só lugar!</p>
+                    <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>AllInOneShop@gmail.com</p>
+                    <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+351 913 981 916</p>
+                </div>
+                <div class="col-lg-8 col-md-12">
+                    <div class="row">
+                        <div class="col-md-4 mb-5">
+                            <h5 class="text-secondary text-uppercase mb-4">AllInOneShop</h5>
+                            <div class="d-flex flex-column justify-content-start">
+                                <a class="text-secondary mb-2" href="index.html"><i
+                                        class="fa fa-angle-right mr-2"></i>Pagina inicial</a>
+                                <a class="text-secondary mb-2" href="about.html"><i
+                                        class="fa fa-angle-right mr-2"></i>Sobre nós</a>
+                                <a class="text-secondary mb-2" href="products.html"><i
+                                        class="fa fa-angle-right mr-2"></i>Produtos</a>
+                                <a class="text-secondary mb-2" href="news.html"><i
+                                        class="fa fa-angle-right mr-2"></i>Novidades</a>
+                                <a class="text-secondary mb-2" href="fashion.html"><i
+                                        class="fa fa-angle-right mr-2"></i>Novidades de moda</a>
+                                <a class="text-secondary" href="contact.html"><i
+                                        class="fa fa-angle-right mr-2"></i>Contacte-nos</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 px-xl-0 text-center text-md-right">
+                            <img class="img-fluid" src="images/payments.png" alt="" width="500" height="400">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+                <div class="col-md-6 px-xl-0">
+                    <p class="mb-md-0 text-center text-md-left text-secondary">
+                        &copy; 2023 Todos os direitos reservados <a class="text-primary" href="#">AllInOneShop</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+<script>
+    var cart = localStorage.getItem('cart');
+
+    if (cart) {
+        cart = JSON.parse(cart);
+
+        // Obter o elemento de exibição do carrinho
+        var cartItemsElement = document.getElementById('cart-items');
+        var checkoutButton = document.getElementById('checkout-button');
+        var cartBadge = document.getElementById('cart-badge');
+
+
+        function updateCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Exibir o carrinho
+            displayCart();
+
+            // Calcular e exibir o subtotal e o total
+            calculateTotals();
+
+            var cartItemCount = 0;
+            cart.forEach(function (item) {
+                cartItemCount += item.quantidade;
+            });
+            localStorage.setItem('cartItemCount', cartItemCount);
+
+
+
+        }
+
+        // Função para exibir o carrinho
+        function displayCart() {
+            // Limpar o conteúdo atual do carrinho
+            cartItemsElement.innerHTML = '';
+
+            // Verificar se o carrinho está vazio
+            if (cart.length === 0) {
+                // Exibir uma mensagem caso o carrinho esteja vazio
+                var emptyCartMessage = document.createElement('tr');
+                var emptyCartCell = document.createElement('td');
+                emptyCartCell.colSpan = 5;
+                var emptyCartImage = document.createElement('img');
+                emptyCartImage.src = 'images/411-4110678_carrinho-de-compras-vazio-shopping-cart.png'; // Insira o caminho correto para a imagem
+                emptyCartCell.appendChild(emptyCartImage);
+                emptyCartMessage.appendChild(emptyCartCell);
+                cartItemsElement.appendChild(emptyCartMessage);
+            } else {
+                // Iterar sobre os itens do carrinho
+                cart.forEach(function (item) {
+                    // Criar uma linha da tabela para cada item
+                    var row = document.createElement('tr');
+                    row.classList.add('align-middle');
+                    // Coluna do nome do produto
+                    var productNameCell = document.createElement('td');
+                    productNameCell.classList.add('align-middle');
+
+                    // Criar um contêiner flexível para a imagem e o nome do produto
+                    var productContainer = document.createElement('div');
+                    productContainer.classList.add('product-container');
+
+                    var productImage = document.createElement('img');
+                    productImage.src = item.imagem;
+                    productImage.alt = 'Imagem do produto';
+                    productImage.classList.add('fixed-size-image'); // Adicione a classe CSS para a imagem
+                    productContainer.appendChild(productImage);
+
+                    var productName = document.createElement('span');
+                    productName.textContent = item.nome;
+                    productContainer.appendChild(productName);
+
+                    productNameCell.appendChild(productContainer);
+                    row.appendChild(productNameCell);
+
+                    // Coluna do preço
+                    var priceCell = document.createElement('td');
+                    priceCell.classList.add('align-middle');
+                    priceCell.textContent = formatPrice(item.preco);
+                    row.appendChild(priceCell);
+
+                    // Coluna da quantidade
+                    var quantityCell = document.createElement('td');
+                    quantityCell.classList.add('align-middle');
+                    var quantityInputGroup = document.createElement('div');
+                    quantityInputGroup.className = 'input-group quantity mx-auto';
+                    quantityInputGroup.style.width = '100px';
+
+                    var minusButton = document.createElement('button');
+                    minusButton.className = 'btn btn-sm btn-primary btn-minus';
+                    minusButton.innerHTML = '<i class="fa fa-minus"></i>';
+                    quantityInputGroup.appendChild(minusButton);
+                    var quantityInput = document.createElement('input');
+                    quantityInput.type = 'text';
+                    quantityInput.className = 'form-control form-control-sm bg-secondary border-0 text-center';
+
+                    var quantityInput = document.createElement('input');
+                    quantityInput.type = 'text';
+                    quantityInput.className = 'form-control form-control-sm bg-secondary border-0 text-center';
+
+                    // Ouvinte de eventos para detectar a mudança no campo de entrada
+                    quantityInput.addEventListener('input', function () {
+                        var newValue = parseInt(quantityInput.value);
+
+                        // Verificar se o novo valor é um número válido
+                        if (!isNaN(newValue) && newValue >= 1) {
+                            item.quantidade = newValue;
+                            updateCart();
+                            updateCartBadge();
+                        } else {
+                            quantityInput.value = item.quantidade || 1; // Definir o valor como 1 se o valor atual for inválido ou vazio
+                        }
+                    });
+
+                    // Verificar se a quantidade é undefined e definir como 1 caso seja
+                    if (item.quantidade === undefined) {
+                        item.quantidade = 1;
+                    }
+
+                    quantityInput.value = item.quantidade;
+                    quantityInputGroup.appendChild(quantityInput);
+
+                    var plusButton = document.createElement('button');
+                    plusButton.className = 'btn btn-sm btn-primary btn-plus';
+                    plusButton.innerHTML = '<i class="fa fa-plus"></i>';
+                    quantityInputGroup.appendChild(plusButton);
+
+                    quantityCell.appendChild(quantityInputGroup);
+                    row.appendChild(quantityCell);
+
+                    minusButton.addEventListener('click', function () {
+                        var currentValue = parseInt(quantityInput.value);
+                        if (currentValue > 1) {
+                            item.quantidade = currentValue - 1;
+                            quantityInput.value = item.quantidade;
+                            updateCart();
+                            updateCartBadge(); // Atualizar o número na bola do carrinho
+                        }
+                    });
+
+                    plusButton.addEventListener('click', function () {
+                        var currentValue = parseInt(quantityInput.value);
+                        item.quantidade = currentValue + 1;
+                        quantityInput.value = item.quantidade;
+                        updateCart();
+                        updateCartBadge();
+                    });
+
+                    // Coluna de remoção
+                    var removeCell = document.createElement('td');
+                    removeCell.classList.add('align-middle');
+                    var removeButton = document.createElement('button');
+                    removeButton.classList.add('btn', 'btn-sm', 'btn-danger');
+                    removeButton.innerHTML = '<i class="fa fa-times"></i>';
+                    removeCell.appendChild(removeButton);
+                    row.appendChild(removeCell);
+
+                    removeButton.addEventListener('click', function () {
+                        // Obter o índice do item no array cart
+                        var index = cart.indexOf(item);
+
+                        if (index !== -1) {
+                            // Remover o item do carrinho pelo índice
+                            cart.splice(index, 1);
+                            updateCart();
+
+                            // Exibir uma mensagem de sucesso ou fazer outras ações necessárias
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Produto removido do carrinho!',
+                                showConfirmButton: false,
+                                timer: 500
+                            });
+                            updateCartBadge();
+                        }
+                    });
+
+                    // Adicionar a linha à tabela
+                    cartItemsElement.appendChild(row);
+                });
+            }
+
+        }
+
+        function updateCartBadge() {
+            var cartItemCount = 0;
+
+            // Verificar se há um valor para cartItemCount no armazenamento local
+            var cartItemCount = localStorage.getItem('cartItemCount');
+
+            // Verificar se o valor de cartItemCount é válido e atualizar o conteúdo da bolinha
+            if (cartItemCount && parseInt(cartItemCount) > 0) {
+                cartBadge.textContent = cartItemCount;
+                cartBadge.classList.remove('empty');
+            } else {
+                cartBadge.textContent = '';
+                cartBadge.classList.add('empty');
+                cartBadge.style.display = 'none';
+            }
+        }
+
+
+        updateCartBadge();
+
+        function calculateTotals() {
+            var subtotal = 0;
+
+            // Percorrer os itens do carrinho e somar os preços
+            cart.forEach(function (item) {
+                subtotal += item.preco * item.quantidade;
+            });
+
+            // Verificar se há produtos no carrinho
+            var shipping = cart.length > 0 ? 10 : 0;
+
+            // Calcular o total, adicionando os portes de envio
+            var total = subtotal + shipping;
+
+            // Atualizar os elementos HTML do subtotal e do total
+            var subtotalElement = document.getElementById('subtotal');
+            var shippingElement = document.getElementById('shipping');
+            var totalElement = document.getElementById('total');
+
+            subtotalElement.textContent = formatPrice(subtotal);
+            shippingElement.textContent = formatPrice(shipping);
+            totalElement.textContent = formatPrice(total);
+
+            var checkoutButton = document.getElementById('checkout-button');
+            var checkoutButtonWrapper = document.getElementById('checkout-button-wrapper');
+            if (cart.length === 0) {
+                checkoutButton.disabled = true;
+                checkoutButtonWrapper.style.cursor = 'not-allowed'; // Definir o cursor como "default" no wrapper
+                checkoutButtonWrapper.style.opacity = '0.5'; // Reduzir a opacidade do wrapper
+            } else {
+                checkoutButton.disabled = false;
+                checkoutButtonWrapper.style.cursor = 'pointer'; // Definir o cursor de volta para o padrão no wrapper
+                checkoutButtonWrapper.style.opacity = '1'; // Restaurar a opacidade do wrapper
+            }
+        }
+
+        // Exibir o carrinho
+        displayCart();
+        updateCartBadge();
+
+        // Calcular e exibir o subtotal inicial
+        calculateTotals();
+    } else {
+        // Exibir uma mensagem caso o carrinho esteja vazio
+        var emptyCartMessage = document.createElement('tr');
+        var emptyCartCell = document.createElement('td');
+        emptyCartCell.colSpan = 5;
+        emptyCartCell.textContent = 'O carrinho está vazio.';
+        emptyCartMessage.appendChild(emptyCartCell);
+        document.getElementById('cart-items').appendChild(emptyCartMessage);
+
+        var checkoutButton = document.getElementById('checkout-button');
+        var checkoutButtonWrapper = document.getElementById('checkout-button-wrapper');
+        if (cart.length === 0) {
+            checkoutButton.disabled = true;
+            checkoutButtonWrapper.style.cursor = 'not-allowed';
+        } else {
+            checkoutButton.disabled = false;
+            checkoutButtonWrapper.style.cursor = 'pointer';
+        }
+    }
+
+    function formatPrice(price) {
+        return new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR' }).format(price);
+    }
+
+    function isAuthenticated() {
+        var token = localStorage.getItem('token');
+        return !!token;
+    }
+
+    document.getElementById('checkout-button').addEventListener('click', function () {
+
+        if (isAuthenticated()) {
+
+            var encodedCart = encodeURIComponent(JSON.stringify(cart));
+            window.location.href = 'checkout.html?cart=' + encodedCart;
+        } else {
+            Swal.fire({
+                title: 'É necessário iniciar sessão para prosseguir com a compra',
+                icon: 'warning',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Iniciar sessão'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'login.html';
+                }
+            });
+        }
+    });
+
+</script>
+<script>
+    function isAuthenticated() {
+      var token = localStorage.getItem('token');
+      return token !== null && token !== undefined;
+   }
+
+  // Verifica se o usuário está autenticado
+if (isAuthenticated()) {
+   // O usuário está autenticado, faça algo
+   console.log('Utilizador autenticado');
+   var logoutButton = document.getElementById('logoutbut');
+   var loginButton = document.getElementById('butlog');
+   var ordere = document.getElementsByClassName('ordere')[0];
+   var orderedd = document.getElementsByClassName('orderedd')[0];
+   var menutext = document.getElementsByClassName('menu-text')[0];
+
+   if (logoutButton) {
+      logoutButton.style.display = 'block';
+      orderedd.style.display = 'block';
+      menutext.style.display = 'block'; // Mostra o elemento com a classe "menu-text"
+   }
+   if (loginButton) {
+      loginButton.style.display = 'none';
+      ordere.style.display = 'none';
+   }
+} else {
+   // O usuário não está autenticado, faça algo
+   console.log('Utilizador não autenticado');
+   var logoutButton = document.getElementById('logoutbut');
+   var loginButton = document.getElementById('butlog');
+   var ordere = document.getElementsByClassName('ordere')[0];
+   var orderedd = document.getElementsByClassName('orderedd')[0];
+   var menutext = document.getElementsByClassName('menu-text')[0];
+
+   if (logoutButton) {
+      logoutButton.style.display = 'none';
+      orderedd.style.display = 'none';
+      menutext.style.display = 'none'; // Esconde o elemento com a classe "menu-text"
+   }
+   if (loginButton) {
+      loginButton.style.display = 'block';
+      ordere.style.display = 'block';
+   }
+}
+
+
+
+    function logout() {
+        localStorage.removeItem('token'); // Remova o token do localStorage
+        // Redirecione o usuário para a página de login ou para qualquer outra página desejada
+        window.location.reload(); // Substitua 'login.html' pelo URL da página de login
+    }
+
+    function gotologin() {
+        location.replace("login.html");
+    }
+</script>
+
+
+</html>

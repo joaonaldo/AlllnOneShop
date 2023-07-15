@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Gerir produtos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .no-products-message {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .description {
+            margin-bottom: 5px;
+            /* Ajuste o valor conforme desejado */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .product_text {
+            margin-top: -10px;
+            text-align: justify;
+            flex-grow: 1;
+            word-wrap: break-word;
+            /* Quebra a linha quando atinge o limite da página */
+            word-break: break-word;
+            /* Quebra a palavra em várias linhas, se necessário */
+        }
+
+        .product_text p {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            /* Define o número máximo de linhas que serão exibidas */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            /* Adiciona reticências para indicar que o texto foi cortado */
+        }
+
+        .product {
+            border: 1px solid #ecf3fc;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #e6f4e6;
+            display: flex;
+            /* Adicionado: exibir como flexbox */
+        }
+
+        .product .content {
+            flex-grow: 1;
+            padding-left: 20px;
+        }
+
+        .product .name {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product .description {
+            margin-bottom: 10px;
+        }
+
+        .product .price {
+            margin-bottom: 10px;
+        }
+
+        .product .image {
+            text-align: flex-start;
+            /* Alterado: alinhar à direita */
+            margin-left: 10px;
+            /* Modificado: mover a imagem para a esquerda */
+            margin-right: 40px;
+            /* Adicionado: espaço entre a imagem e o conteúdo */
+        }
+
+        .product .image img {
+            max-width: 250px;
+            max-height: 200px;
+        }
+
+        .product .actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+      
+
+        h5 {
+            font-size: 14px;
+        }
+
+        .blink {
+            animation: none;
+        }
+
+        .blink:hover {
+            animation: blink 0.5s infinite;
+        }
+
+        .header_top {
+            width: 100%;
+            background-color: #ecf3fc;
+            padding: 10px 0;
+        }
+
+        .create-product-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            margin-left: -1200px;
+        }
+
+        .create-product-button button {
+            background-color: #3127b3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+    <style>
+        .custom-button {
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+    
+        .custom-button:focus {
+            outline: none;
+        }
+    </style>
+    
+    <div class="header_top d_none1">
+        <ul class="conta_icon d_none1">
+            <div style="display: flex; align-items: center; justify-content: flex-start;">
+                <button onclick="window.location.href='admmainpage.html'" class="custom-button blink">
+                    <img src="favicon.ico" style="margin-right: 5px;">
+                    <h9 style="margin: 0;">AllInOneShop Administração</h9>
+                </button>
+            </div>
+        </ul>
+    </div>
+    
+    </header>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .search-container {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 5px;
+            padding-left: 20px;
+        }
+
+        .search-container input[type="text"] {
+            border: none;
+            padding: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-container img {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .search-container select {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 19px;
+            padding: 10px;
+            outline: none;
+            left: -165px;
+            position: absolute;
+        }
+    </style>
+
+    <div class="container">
+        <div style="position: relative; left: 460px;">
+            <h2 style="position: relative; left: -70px;">Gerir Produtos criados</h2>
+            <div style="position: relative; left: -60px; top: 50px;" class="create-product-button">
+                <button onclick="createproduct()">+</button>
+            </div>
+        </div>
+
+        <div style="position: relative; top: 60px; left: 76px;" class="search-container">
+            <input type="text" id="search-input" onclick="searchProduct()" placeholder="Pesquisar produto">
+            <div style="position: relative; top: -22px; left: -250px;">
+                <select id="category-filter">
+                    <option value="all">Todos os produtos</option>
+                    <option value="Tecnologia">Tecnologia</option>
+                    <option value="Acessorios">Acessorios</option>
+                    <option value="Roupa">Roupa</option>
+                    <option value="Calçado">Calçado</option>
+                </select>
+                
+            </div>
+            <img src="Images/49116.png" onclick="searchProduct()" alt="Buscar">
+        </div>
+    </div>
+
+    <div style="position: relative; top: 40px;" id="product-container"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.css">
+    <script>
+        function createproduct() {
+            location.replace("./adminspage.html");
+        }
+    </script>
+
+    <script>
+        function buscarDados(category, searchTerm) {
+            console.log(category,);
+            const url = 'http://localhost:8000/api/product?search=' + encodeURIComponent(searchTerm);
+            fetch(url)
+                .then(response => response.json())
+                .then(data => filtrarDados(data, category))
+                .then(filteredData => exibirDados(filteredData, searchTerm))
+                .catch(error => console.log('Ocorreu um erro:', error));
+        }
+
+        function filtrarDados(data, category) {
+            if (category === 'all') {
+                return data;
+            } else {
+                return data.filter(product => product.category === category);
+            }
+        }
+
+        function exibirDados(data) {
+            console.log(data);
+            const container = document.getElementById('product-container');
+            container.innerHTML = '';
+
+            if (data.length === 0) {
+                const message = document.createElement('p');
+                message.classList.add('no-products-message');
+                message.textContent = 'Nenhum Produto encontrado.';
+                container.appendChild(message);
+                return;
+            }
+
+            data.forEach((product, index) => {
+                const productItem = document.createElement('div');
+                productItem.classList.add('product');
+
+                const content = document.createElement('div');
+                content.classList.add('content');
+
+                const name = document.createElement('div');
+                name.classList.add('name');
+                name.textContent = product.name;
+                content.appendChild(name);
+
+                const description = document.createElement('p');
+                description.classList.add('description');
+                description.innerHTML = '<span class="first-line">' + product.description + '</span>';
+                content.appendChild(description);
+
+                const price = document.createElement('div');
+                price.classList.add('price');
+                price.innerHTML = formatPrice(product.price);
+                content.appendChild(price);
+
+                const quantity = document.createElement('div');
+    quantity.classList.add('quantity');
+    quantity.innerHTML = '<strong>QTD:</strong> ' + product.quantity;
+    content.appendChild(quantity);
+
+                productItem.appendChild(content);
+
+                const imageContainer = document.createElement('div');
+                imageContainer.classList.add('image');
+                const image = document.createElement('img');
+                const firstImagePath = product.images && product.images.length > 0
+                    ? `./uploads/${product.images[0].filename}`
+                    : './uploads/placeholder-image.jpg';
+                image.src = firstImagePath;
+                imageContainer.appendChild(image);
+                productItem.appendChild(imageContainer);
+
+                const actions = document.createElement('div');
+                actions.classList.add('actions');
+
+                function DetailsProduct(id) {
+                    window.location.href = `detailsproduct.html?id=${id}`;
+                }
+
+                function editProduct(id) {
+                    window.location.href = `productedit.html?id=${id}`;
+                }
+                
+                const editButton = document.createElement('button');
+                editButton.className = 'btn btn-edit'; // Adicione as classes existentes do botão
+                editButton.innerHTML = '<i class="fas fa-edit"></i> Editar';
+                editButton.addEventListener('click', function () {
+                    editProduct(product.id);
+                });
+
+                const detailsButton = document.createElement('button');
+                detailsButton.className = 'btn btn-details'; // Adicione as classes existentes do botão
+                detailsButton.innerHTML = '<i class="fas fa-info-circle"></i> Detalhes';
+                detailsButton.addEventListener('click', function () {
+                    DetailsProduct(product.id);
+                });
+
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'btn btn-delete';
+                deleteButton.innerHTML = '<i class="fas fa-trash"></i> Eliminar';
+                deleteButton.addEventListener('click', function () {
+                    deleteProduct(product.id);
+                });
+
+             
+               
+
+             
+            
+
+                actions.appendChild(editButton);
+                actions.appendChild(detailsButton);
+                actions.appendChild(deleteButton);
+                productItem.appendChild(actions);
+                container.appendChild(productItem);
+            });
+        }
+
+
+
+        function deleteProduct(id) {
+            const url = `http://localhost:8000/api/product/${id}`;
+            const requestOptions = {
+                method: 'DELETE'
+            };
+
+            Swal.fire({
+                title: 'Tem a certeza?',
+                text: "Esta ação não pode ser revertida!",
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonColor: '#08bb26',
+                cancelButtonText: 'Cancelar',
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Eliminar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(url, requestOptions)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Product deleted:', data.message);
+                            Swal.fire(
+                                'Eliminado!',
+                                'O Produto foi eliminado com sucesso!',
+                                'success'
+                            );
+                            const categoryFilter = document.getElementById('category-filter');
+                            buscarDados(categoryFilter.value);
+                        })
+                        .catch(error => {
+                            console.log('An error occurred:', error);
+                            Swal.fire(
+                                'Error',
+                                'An error occurred while deleting the product.',
+                                'error'
+                            );
+                        });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                }
+            });
+        }
+
+        function searchProduct() {
+            const searchInput = document.getElementById('search-input');
+            const productName = searchInput.value.trim();
+            const categoryFilter = document.getElementById('category-filter');
+            const category = categoryFilter.value;
+
+            if (productName !== '' || category !== 'all') {
+                let url = `http://localhost:8000/api/produto/search-by-name?`;
+
+                if (productName !== '') {
+                    url += `name=${encodeURIComponent(productName)}`;
+                }
+
+                if (category !== 'all') {
+                    url += `&category=${encodeURIComponent(category)}`;
+                }
+
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        exibirDados(data);
+                    })
+                    .catch(error => console.log('Ocorreu um erro:', error));
+            }
+        }
+
+        const searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('keydown', event => {
+            if (event.keyCode === 13) { // Código 13 corresponde à tecla "Enter"
+                searchProduct();
+            }
+        });
+
+        window.onload = function () {
+            const categoryFilter = document.getElementById('category-filter');
+            const searchInput = document.getElementById('search-input');
+
+            categoryFilter.addEventListener('change', function () {
+                const selectedCategory = categoryFilter.value;
+                const searchTerm = searchInput.value;
+                buscarDados(selectedCategory, searchTerm);
+            });
+
+            searchInput.addEventListener('input', function () {
+                const selectedCategory = categoryFilter.value;
+                const searchTerm = searchInput.value;
+                buscarDados(selectedCategory, searchTerm);
+            });
+            buscarDados('all', '');
+        };
+
+        function formatPrice(price) {
+            return new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR' }).format(price);
+        }
+    </script>
+    <link rel="stylesheet" href="css/button.css">
+</body>
+
+</html>

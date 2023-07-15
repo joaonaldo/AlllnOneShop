@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Criar Produtos</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Estilos personalizados para a página de criação de produtos */
+    .container {
+      max-width: 550px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .custom-file-input {
+      display: none;
+      cursor: pointer;
+    }
+
+    /* Estilo personalizado para ocultar as setas do campo de número */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    form {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    select,
+    textarea {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    .half-width {
+      width: calc(50% - 5px);
+      margin-right: 10px;
+    }
+
+    input[type="number"],
+    input[type="abc"] {
+      height: 30px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .custom-button {
+      display: inline-block;
+      background-color: #0847a0;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .custom-button:hover {
+      background-color: #2e089f;
+    }
+
+    .blink {
+      animation: none;
+    }
+
+    .custom-file-input-label {
+      border: 2px solid black;
+      padding: 5px;
+      cursor: pointer;
+    }
+
+
+    .blink:hover {
+      animation: blink 0.5s infinite;
+    }
+
+    @keyframes blink {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div style="margin-left: -55%;">
+      <div class="header_top d_none1">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <ul class="conta_icon d_none1">
+                <div style="display: flex; align-items: center; justify-content: flex-start;">
+                  <a href="admmainpage.html" style="display: flex; align-items: center; text-decoration: none;"
+                    class="blink">
+                    <img src="favicon.ico" style="margin-right: 5px;">
+                    <h5 style="margin: 0;">AllInOneShop Administração</h5>
+                  </a>
+                </div>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container" style="text-align: left;">
+    <h1>Criar Produto</h1>
+    
+    <div>
+      <label for="nome">Nome do Produto:</label>
+      <input autocomplete="off" type="text" id="name">
+    </div>
+    <div>
+      <label for="category">Categoria:</label>
+      <select id="category">
+        <option>Selecione uma opção</option>
+        <option>Roupa</option>
+        <option>Tecnologia</option>
+        <option>Acessorios</option>
+        <option>Calçado</option>
+      </select>
+    </div>
+    <div style="display: flex;">
+      <div style="width: 50%;">
+        <label for="preco">Preço:</label>
+        <div style="position: relative;">
+          <input type="number" id="price" style="padding-right: 20px; max-width: calc(100% - 20px);"
+            oninput="limitPriceLength(this)" min="0" step="0.01">
+          <span style="position: absolute; top: 50%; right: 25px; transform: translateY(-50%);">€</span>
+        </div>
+
+      </div>
+      <div style="width: 50%; margin-left: 80px;">
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" id="quantity">
+      </div>
+    </div>
+
+    <div>
+      <label for="descricao">Descrição:</label>
+      <textarea id="description" rows="7" cols="50"></textarea>
+    </div>
+    <div style="display: flex; justify-content: space-between;">
+      <div style="width: 50%;">
+        <label style="text-align: center;" class="custom-file-input-label" for="images[]">Selecionar uma imagem</label>
+        <input type="file" id="images[]" style="display: none;" accept="image/*">
+        <p id="file-count"></p>
+      </div>
+      <div style=" text-align: right; height: 50%;">
+        <button type="button" onclick="createProduct()" class="custom-button">Criar Produto</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    function createProduct() {
+      var name = document.getElementById("name").value;
+      var category = document.getElementById("category").value;
+      var price = document.getElementById("price").value;
+      var quantity = document.getElementById("quantity").value;
+      var description = document.getElementById("description").value;
+      var images = document.getElementById("images[]").files; // Obtenha os arquivos selecionados
+
+      if (!name || !price || !quantity || !description || images.length === 0) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'warning',
+          title: 'Por favor, preencha todos os campos obrigatórios',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        return;
+      }
+
+      if (category === 'Selecione uma opção') {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'warning',
+          title: 'Por favor, preencha todos os campos obrigatórios',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        return;
+      }
+
+      var formData = new FormData(); // Crie um objeto FormData para enviar os dados
+      formData.append("name", name);
+      formData.append("category", category);
+      formData.append("price", price);
+      formData.append("quantity", quantity);
+      formData.append("description", description);
+      for (var i = 0; i < images.length; i++) {
+        formData.append("images[]", images[i]);
+      }
+
+      fetch('http://127.0.0.1:8000/api/products', {
+        method: 'post',
+        body: formData // Envie o objeto FormData como corpo da requisição
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) { // Verifique se a criação do produto foi bem-sucedida
+          } else {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Produto criado com sucesso',
+              showConfirmButton: false,
+              timer: 1500
+            }).then(() => {
+              window.location.replace("productdetails.html")
+            });
+            document.getElementById("name").value = "";
+            document.getElementById("category").value = "Selecione uma opção";
+            document.getElementById("price").value = "";
+            document.getElementById("quantity").value = "";
+            document.getElementById("description").value = "";
+            document.getElementById("images[]").value = "";
+            document.getElementById('file-count').textContent = "ficheiros selecionados: 0";
+
+          }
+        })
+        .catch(error => {
+          console.error(error);
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Erro ao criar o produto',
+            showConfirmButton: false,
+            timer: 1500
+          });
+        });
+    }
+
+    const inputImagem = document.getElementById('images[]');
+    const labelImagem = document.querySelector('.custom-file-input-label');
+    const fileCountElement = document.getElementById('file-count');
+
+    inputImagem.addEventListener('change', () => {
+      const fileCount = inputImagem.files.length;
+      let message = '';
+
+      if (fileCount === 0) {
+        message = "Não selecionou nenhuma imagem";
+      } else if (fileCount === 1) {
+        message = "Selecionou 1 imagem";
+      } else {
+        message = `Selecionou ${fileCount} imagens`;
+      }
+
+      labelImagem.setAttribute('data-message', message);
+
+      // Exibir o número de arquivos selecionados abaixo da label
+      fileCountElement.textContent = `Ficheiros selecionados: ${fileCount}`;
+    });
+
+    function limitPriceLength(input) {
+      const maxLength = 6;
+      const value = input.value.replace(/[^\d.]/g, '');
+
+      if (value.indexOf('.') !== -1) {
+
+        const integerPart = value.split('.')[0];
+        let decimalPart = value.split('.')[1];
+
+        if (integerPart.length > 6) {
+
+          input.value = integerPart.slice(0, 6) + '.' + decimalPart;
+        }
+
+        if (decimalPart && decimalPart.length > 0) {
+
+          decimalPart = decimalPart.slice(0, 2);
+          input.value = integerPart + '.' + decimalPart;
+        }
+      } else if (value.length > maxLength) {
+
+        input.value = value.slice(0, maxLength);
+      }
+    }
+
+  </script>
+</body>
+
+</html>

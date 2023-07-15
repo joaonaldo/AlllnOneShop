@@ -1,0 +1,32 @@
+  /* Estilo personalizado para o botão de edição */
+  .btn-edit {
+    background-color: #28a745;
+    color: white;
+    border-color: #28a745;
+ }
+ .btn-edit:hover {
+
+    color: black;
+
+ }
+   /* Estilo personalizado para o botão de detalhes */
+   .btn-details {
+    background-color: #17a2b8;
+    color: white;
+    border-color: #17a2b8;
+ }
+
+ .btn-details:hover {
+    color: #000000;
+ }
+   /* Estilo personalizado para o botão de exclusão */
+   .btn-delete {
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+ }
+
+ .btn-delete:hover {
+    color: black;
+ }
+ 

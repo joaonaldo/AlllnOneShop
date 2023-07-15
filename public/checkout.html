@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Dados de envio</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+
+    <!-- Favicon -->
+    <link href="    favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style1.css" rel="stylesheet">
+    <style>
+        .product-item {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        .product-image {
+
+            vertical-align: middle;
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            position: absolute;
+            left: 20px;
+        }
+
+        .product-details {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-left: 0px;
+        }
+
+        .product-name {
+            position: relative;
+            max-width: 200px;
+            min-width: 170px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: initial;
+            text-align: justify;
+            right: -30px;
+        }
+
+        .product-quantity {
+            position: absolute;
+            right: 45px;
+            bottom: -25px;
+            /* Adjust the value as needed */
+        }
+
+        .product-price {
+            position: absolute;
+            right: 45px;
+        }
+    </style>
+
+
+
+</head>
+<script>
+    window.addEventListener('load', function () {
+        // Quando a página terminar de carregar, oculta o loader
+        var loader = document.querySelector('.loader_bg');
+        loader.style.display = 'none';
+    });
+</script>
+
+<body>
+    <!-- header -->
+    <!-- loader  -->
+    <div class="loader_bg">
+        <div class="loader"><img src="images/loading__.gif" alt="#" /></div>
+    </div>
+    <header>
+        <script>
+             var popupOpened = false;
+  
+  function togglePopup() {
+     var popup = document.getElementById("popup");
+     if (!popupOpened) {
+        popup.style.display = "block";
+        setTimeout(function () {
+           popup.classList.add("opened");
+        }, 10);
+        popupOpened = true;
+     } else {
+        popup.classList.remove("opened");
+        setTimeout(function () {
+           popup.style.display = "none";
+        }, 300);
+        popupOpened = false;
+     }
+  }
+  
+  function showPurchaseHistory() {
+    location.replace('purchasehistory.html');
+  }
+  
+  document.addEventListener("click", function (event) {
+   var popup = document.getElementById("popup");
+   var toggleButton = document.querySelector(".orderedd");
+   if (popupOpened && event.target !== popup && event.target !== toggleButton) {
+       popup.style.display = "none";
+       popupOpened = false;
+       // Limpar o temporizador se o menu for fechado por um clique fora dele
+       clearTimeout(popupTimeout);
+   }
+  });
+        </script>
+        <!-- header inner -->
+        <div class="header">
+           <div class="header_top d_none1">
+              <div class="container">
+                 <div class="row">
+                    <div class="col-md-4">
+                       <ul class="conta_icon d_none1">
+                          <style>
+                             .abcdf {
+                                position: absolute;
+                                left: 0;
+                             }
+                          </style>
+                          <li><a class="abcdf" href="index.html"><img src="favicon.ico" alt="#" /> AlllnOneShop</a></li>
+                       </ul>
+                    </div>
+  
+                 </div>
+              </div>
+           </div>
+           <div class="header_midil">
+              <div class="container">
+                 <div class=""></div>
+                 <div class="row d_flex">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                       <style>
+                          .cart-icon {
+                             float: left;
+                             margin-left: 188px;
+                             /* Ajuste o valor conforme necessário */
+                          }
+  
+                          .car-icon {
+                             float: left;
+                      
+                             /* Cor, espessura e estilo da borda */
+                             border-radius: 0;
+                             /* Bordas retas */
+                             display: flex;
+                             align-items: center;
+                             justify-content: center;
+                             /* Alinha os itens horizontalmente */
+                             width: 40px;
+                             /* Largura do ícone */
+                             height: 40px;
+                             /* Altura do ícone */
+                          }
+  
+                          .popup {
+                             display: none;
+                             position: absolute;
+                             top: -22px;
+                             left: 243px;
+                             /* Ajuste o valor conforme necessário */
+                             width: 200px;
+                             /* Ajuste a largura conforme necessário */
+                             background-color: #e9e8f7c6;
+                             border: 1px solid #dddddd;
+                             padding: 10px;
+                             border-radius: 5px;
+                             z-index: 9999;
+                             text-align: center;
+                             overflow: hidden;
+                             max-height: 0;
+                             transition: max-height 0.5s ease;
+                          }
+  
+                          .popup.opened {
+                             max-height: 200px;
+                             /* Ajuste a altura máxima conforme necessário */
+                          }
+  
+  
+  
+                          .popup button {
+                             display: block;
+                             margin-bottom: 10px;
+                             padding: 8px 16px;
+                             font-size: 14px;
+                             border: none;
+                             background-color: #f9f9f9;
+                             color: #333333;
+                             cursor: pointer;
+                          }
+  
+                          .popup button.terminarSessao {
+                             width: 100%;
+                          }
+  
+                          .popup button.historico {
+                             width: 100%;
+                          }
+  
+  
+  
+                          .popup button.redButton {
+                             background-color: #ff0000;
+                             color: #ffffff;
+                          }
+                       </style>
+                       <ul>
+                          <div onclick="togglePopup()" style="position: absolute; left: 10px; top: 48px;">
+                             <img class="orderedd" src="Images/menu_icon.png">
+                             <span class="menu-text" style="text-indent: 85px; font-size: 18px;"></span>
+                             <a style="position: relative; top: -106px; right: -340px; color: rgb(0, 0, 0); font-size: 18px; cursor: pointer;">Menu</a>
+                         </div>
+  
+                          <div id="popup" class="popup">
+                             <button onclick="showPurchaseHistory()" class="historico">Histórico de compras</button>
+
+                          </div>
+  
+                       </ul>
+                    </div>
+                    <style>
+                       .ordere {
+                          padding-top: 2px;
+                          top: 800px;
+                          float: right;
+                          max-width: 120px;
+                          font-size: 14px !important;
+                          color: #fff !important;
+                          height: 28px;
+                          width: 100%;
+                          background-color: #183661;
+                          display: block;
+                          text-align: center;
+                          border-radius: 40px;
+                       }
+                       #cart-badge {
+                             position: absolute;
+                             background-color: red;
+                             color: white;
+                             border-radius: 50%;
+                             width: 20px;
+                             height: 20px;
+                             display: flex;
+                             justify-content: center;
+                             align-items: center;
+                             font-size: 10px;
+                             top: -10px;
+                             /* Ajuste a posição vertical conforme necessário */
+                             right: -10px;
+                          }
+  
+                       .ordere:hover {
+                          background-color: #f2c119;
+                       }
+  
+                       .orderedd {
+                          padding-top: 2px;
+                          padding-bottom: 4px;
+                          float: right;
+                          max-width: 100px;
+                          font-size: 14px !important;
+                          color: #fff !important;
+                          height: 35px;
+                          display: block;
+                          text-align: center;
+                          border-radius: 4px;
+                          cursor: pointer;
+                          position: relative;
+                          top: -110px;
+                          left: 200px;
+                          width: 55px;
+                          position: relative;
+                          z-index: 1;
+                       }
+  
+                       .menu-text {
+                          position: absolute;
+                          top: -92px;
+                          left: 332px;
+                          height: 48px;
+                          transform: translate(-50%, -50%);
+                          padding: 2px 10px;
+                          font-size: 14px;
+                          background-color: #c4bedb4a;
+                          border-radius: 4px;
+                          width: 200px;
+                          cursor: pointer;
+                          text-transform: initial;
+                       }
+  
+                       .sidebar h3 {
+                          font-family: "Arial", sans-serif;
+                          font-size: 18px;
+                          color: #000000;
+                          margin-bottom: 10px;
+                       }
+  
+                       .filter-bar {
+                          display: flex;
+                          align-items: center;
+                          margin-bottom: 20px;
+                       }
+  
+                       .filter-bar label {
+                          margin-right: 10px;
+                          font-weight: bold;
+                       }
+  
+                       .filter-bar select {
+                          padding: 8px;
+                          border: 1px solid #ccc;
+                          border-radius: 4px;
+                          font-size: 16px;
+                       }
+  
+                       .filter-bar select:focus {
+                          outline: none;
+                          border-color: #4caf50;
+                       }
+                    </style>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div style="position: relative; top: -60px;">
+           <div class="header_bottom">
+              <div class="container">
+                 <div class="row">
+                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                       <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                          <button class="navbar-toggler" type="button" data-toggle="collapse"
+                             data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false"
+                             aria-label="Toggle navigation">
+                             <span class="navbar-toggler-icon"></span>
+                          </button>
+                          <div class="collapse navbar-collapse" id="navbarsExample04">
+                             <ul class="navbar-nav mr-auto">
+                                <li class="nav-item">
+                                   <a class="nav-link" href="index.html">Inicio</a>
+                                </li>
+                                <li class="nav-item">
+                                   <a class="nav-link" href="about.html">Sobre nós</a>
+                                </li>
+                                <li class="nav-item">
+                                   <a class="nav-link" href="products.html">Produtos</a>
+                                </li>
+                                <li class="nav-item">
+                                   <a class="nav-link" href="fashion.html">Moda</a>
+                                </li>
+                                <li class="nav-item">
+                                   <a class="nav-link" href="news.html">Novidades</a>
+                                </li>
+                                <li class="nav-item">
+                                   <a class="nav-link" href="contact.html">Sugestão</a>
+                                </li>
+                             </ul>
+                          </div>
+                       </nav>
+                    </div>
+                    <div class="col-md-4">
+                       <div style="position: relative; left: -35px;" class="search">
+                          <input class="form_sea" type="text" autocomplete="off" placeholder="Pesquisa" name="search">
+                          <button type="submit" class="seach_icon"><i class="fa fa-search"></i></button>
+                       </div>
+                    </div>
+                    <div style="position: absolute; right: 20px; top: -40px;">
+                       <li style="border-color: white;" class="cart-icon">
+                          <div style="position: absolute; right: 125px; top: -0px;">
+                             <a href="cart.html">
+                                <div style="position: relative; bottom: -58px; left: 110px;" class="car-icon">
+                                   <img src="images/3669231_cart_shopping_ic_icon.png" alt="#" />
+                                   <span id="cart-badge"></span>
+                                </div>
+                             </a>
+                          </div>
+                       </li>
+                    </div>
+                 </div>
+              </div>
+           </div>
+     </header>
+     <div style="position: relative; top: -60px;">
+        <div class="container-fluid">
+            <div class="row px-xl-5">
+                <div class="col-lg-8">
+                    <div style="margin-bottom: 70px;"></div>
+                    <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Dados de
+                            envio</span></h5>
+    
+                    <div class="bg-light p-30 mb-5">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>Nome</label>
+                                <input class="form-control" type="text" id="name">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>E-mail</label>
+                                <input class="form-control" type="text" id="email">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Numero de telemovel</label>
+                                <input class="form-control" id="phone"
+                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                    type="number" maxlength="9" />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Morada</label>
+                                <input class="form-control" type="text" id="adress">
+                            </div>
+    
+                            <div class="col-md-6 form-group">
+                                <label>Distrito</label>
+                                <input class="form-control" type="text" id="city">
+                            </div>
+    
+                            <div class="col-md-6 form-group">
+                                <label>Codigo postal</label>
+                                <input class="form-control" type="text" placeholder="XXXX-XXX" oninput="addDash(this)"
+                                    type="text" maxlength="8" id="codepostal" />
+                            </div>
+    
+                            <div class="col-md-6 form-group">
+                                <label>País</label>
+                                <input style="cursor: not-allowed;" class="form-control" type="text" disabled
+                                    placeholder="Portugal">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-lg-4">
+                    <div class="mt-5"> <!-- Moveu para baixo -->
+                        <h5 class="section-title position-relative text-uppercase mb-3"><span
+                                class="bg-secondary pr-3">Total do pedido</span></h5>
+                        <div class="bg-light p-30 mb-5">
+                            <div class="border-bottom">
+                                <h6 class="mb-3">Produtos</h6>
+                                <div id="products-container" class="d-flex flex-wrap"></div>
+                                <div class="d-flex justify-content-between">
+    
+                                </div>
+                            </div>
+                            <div class="border-bottom pt-3 pb-2">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <h6>Subtotal</h6>
+                                    <h6 id="subtotal"></h6>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="font-weight-medium">Portes de envio</h6>
+                                    <h6 id="shipping" class="font-weight-medium"></h6>
+                                </div>
+                            </div>
+                            <div class="pt-2">
+                                <div class="d-flex justify-content-between mt-2">
+                                    <h5>Total</h5>
+                                    <h5 id="total"></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <h5 class="section-title position-relative text-uppercase mb-3"><span
+                                class="bg-secondary pr-3">Pagamento</span></h5>
+                        <div class="bg-light p-30">
+                            <div class="form-group">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" name="payment" id="paypal">
+                                    <label class="custom-control-label" for="paypal">Paypal</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                            </div>
+                            <div class="form-group mb-4">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
+                                    <label class="custom-control-label" for="banktransfer">Transferência
+                                        bancária</label>
+                                </div>
+                            </div>
+                            <button onclick="buy(); handlePurchase()"
+                                class="btn btn-block btn-primary font-weight-bold py-3">FINALIZAR
+                                COMPRA</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+     </div>
+   
+    <footer>
+        <link href="css/style1.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+
+        <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
+            <div class="row px-xl-5 pt-5">
+                <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+                    <h5 class="text-secondary  text-uppercase mb-4">Sobre nós </h5>
+                    <p class="mb-4">AllInOneShop: A sua loja perfeita para comprar tudo e mais alguma coisa em apenas um
+                        só lugar!</p>
+                    <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>AllInOneShop@gmail.com</p>
+                    <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+351 913 981 916</p>
+                </div>
+                <div class="col-lg-8 col-md-12">
+                    <div class="row">
+                        <div class="col-md-4 mb-5">
+                            <h5 class="text-secondary text-uppercase mb-4">AllInOneShop</h5>
+                            <div class="d-flex flex-column justify-content-start">
+                                <a class="text-secondary mb-2" href="index.html"><i
+                                        class="fa fa-angle-right mr-2"></i>Pagina inicial</a>
+                                <a class="text-secondary mb-2" href="about.html"><i
+                                        class="fa fa-angle-right mr-2"></i>Sobre nós</a>
+                                <a class="text-secondary mb-2" href="products.html"><i
+                                        class="fa fa-angle-right mr-2"></i>Produtos</a>
+                                <a class="text-secondary mb-2" href="news.html"><i
+                                        class="fa fa-angle-right mr-2"></i>Novidades</a>
+                                <a class="text-secondary mb-2" href="fashion.html"><i
+                                        class="fa fa-angle-right mr-2"></i>Novidades de moda</a>
+                                <a class="text-secondary" href="contact.html"><i
+                                        class="fa fa-angle-right mr-2"></i>Contacte-nos</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 px-xl-0 text-center text-md-right">
+                            <img class="img-fluid" src="images/payments.png" alt="" width="500" height="400">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+                <div class="col-md-6 px-xl-0">
+                    <p class="mb-md-0 text-center text-md-left text-secondary">
+                        &copy; 2023 Todos os direitos reservados <a class="text-primary" href="#">AllInOneShop</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+
+<script>
+     function isAuthenticated() {
+      var token = localStorage.getItem('token');
+      return token !== null && token !== undefined;
+   }
+
+  // Verifica se o usuário está autenticado
+if (isAuthenticated()) {
+   // O usuário está autenticado, faça algo
+   console.log('Utilizador autenticado');
+   var logoutButton = document.getElementById('logoutbut');
+   var loginButton = document.getElementById('butlog');
+   var ordere = document.getElementsByClassName('ordere')[0];
+   var orderedd = document.getElementsByClassName('orderedd')[0];
+   var menutext = document.getElementsByClassName('menu-text')[0];
+
+   if (logoutButton) {
+      logoutButton.style.display = 'block';
+      orderedd.style.display = 'block';
+      menutext.style.display = 'block'; // Mostra o elemento com a classe "menu-text"
+   }
+   if (loginButton) {
+      loginButton.style.display = 'none';
+      ordere.style.display = 'none';
+   }
+} else {
+   // O usuário não está autenticado, faça algo
+   console.log('Utilizador não autenticado');
+   var logoutButton = document.getElementById('logoutbut');
+   var loginButton = document.getElementById('butlog');
+   var ordere = document.getElementsByClassName('ordere')[0];
+   var orderedd = document.getElementsByClassName('orderedd')[0];
+   var menutext = document.getElementsByClassName('menu-text')[0];
+
+   if (logoutButton) {
+      logoutButton.style.display = 'none';
+      orderedd.style.display = 'none';
+      menutext.style.display = 'none'; // Esconde o elemento com a classe "menu-text"
+   }
+   if (loginButton) {
+      loginButton.style.display = 'block';
+      ordere.style.display = 'block';
+   }
+}
+
+    // Obter o parâmetro cart da URL
+    var queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var encodedCart = urlParams.get('cart');
+
+    // Verificar se o parâmetro cart está presente na URL
+    if (encodedCart) {
+        // Decodificar a string do carrinho e converter em um objeto JavaScript
+        var cart = JSON.parse(decodeURIComponent(encodedCart));
+
+        // Usar o objeto do carrinho para exibir os dados na página de checkout
+        var productsContainer = document.getElementById('products-container');
+
+        // Limpar o conteúdo atual dos produtos
+        productsContainer.innerHTML = '';
+
+        // Iterar sobre os itens do carrinho
+        cart.forEach(function (item) {
+            // Criar um elemento de produto para exibir as informações
+            var productElement = document.createElement('div');
+            productElement.classList.add('product-item');
+
+            // Imagem do produto
+            var productImage = document.createElement('img');
+            productImage.src = item.imagem;
+            productImage.alt = 'Imagem do produto';
+            productImage.classList.add('product-image');
+            productElement.appendChild(productImage);
+
+            // Detalhes do produto
+            var productDetails = document.createElement('div');
+            productDetails.classList.add('product-details');
+
+            // Nome do produto
+            var productName = document.createElement('p');
+            productName.textContent = item.nome;
+            productName.classList.add('product-name');
+            productDetails.appendChild(productName);
+
+            // Preço do produto
+            var productPrice = document.createElement('p');
+            productPrice.textContent = formatPrice(item.preco * item.quantidade); // Calcula o preço total com base na quantidade
+            productPrice.classList.add('product-price');
+            productDetails.appendChild(productPrice);
+
+            // Quantidade do produto
+            // var productQuantity = document.createElement('p');
+            //productQuantity.textContent = 'QTD: ' + item.quantidade;
+            //productQuantity.classList.add('product-quantity');
+            //productDetails.appendChild(productQuantity);
+
+            productElement.appendChild(productDetails);
+
+            // Adicionar o elemento do produto ao container de produtos
+            productsContainer.appendChild(productElement);
+        });
+
+        // Calcular o subtotal
+        var subtotal = 0;
+        cart.forEach(function (item) {
+            subtotal += item.preco * item.quantidade; // Leve em consideração a quantidade do produto
+        });
+
+        // Calcular o frete
+        var shipping = cart.length > 0 ? 10 : 0;
+
+        // Calcular o total, adicionando o frete ao subtotal
+        var total = subtotal + shipping;
+
+        // Elementos HTML para exibir o subtotal, frete e total
+        var subtotalElement = document.getElementById('subtotal');
+        var shippingElement = document.getElementById('shipping');
+        var totalElement = document.getElementById('total');
+
+        // Exibir o subtotal, frete e total
+        subtotalElement.textContent = formatPrice(subtotal);
+        shippingElement.textContent = formatPrice(shipping);
+        totalElement.textContent = formatPrice(total);
+
+        function formatPrice(price) {
+            return new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR' }).format(price);
+        }
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function buy() {
+
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var phone = document.getElementById("phone").value;
+        var adress = document.getElementById("adress").value;
+        var city = document.getElementById("city").value;
+        var codepostal = document.getElementById("codepostal").value;
+        var paypal = document.getElementById("paypal").checked;
+        var banktransfer = document.getElementById("banktransfer").checked;
+
+
+        if (!name || !email || !phone || !adress || !city || !codepostal) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'warning',
+                title: 'Por favor, preencha todos os campos obrigatórios',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            return;
+        }
+
+        if (!paypal && !banktransfer) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'warning',
+                title: 'Por favor, selecione um método de pagamento',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            return;
+        }
+
+        if (cart.length > 0) {
+            var item = cart[0]; // Considerando apenas o primeiro item do carrinho
+            var productName = item.nome;
+            var totalPrice = item.preco * item.quantidade;
+
+            // Construir a URL com os parâmetros de consulta
+            var url = 'final.html?productName=' + encodeURIComponent(productName) + '&totalPrice=' + encodeURIComponent(totalPrice);
+
+            window.location.href = url;
+        }
+    }
+
+
+    fetch('http://localhost:8000/api/profile', {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            // Preencher os campos do formulário com os dados do perfil
+            document.getElementById('name').value = data.user.name;
+            document.getElementById('email').value = data.user.email;
+            document.getElementById('phone').value = data.user.phone;
+            document.getElementById('adress').value = data.user.adress;
+            document.getElementById('city').value = data.user.city;
+            document.getElementById('codepostal').value = data.user.codepostal;
+        })
+        .catch(error => {
+            // Trate qualquer erro ocorrido durante a solicitação
+            console.error(error);
+        });
+
+
+    function addDash(input) {
+        var value = input.value;
+
+        // Remover traços existentes para evitar duplicação
+        value = value.replace(/-/g, '');
+
+        // Adicionar traço após 4 caracteres
+        if (value.length > 4) {
+            value = value.slice(0, 4) + '-' + value.slice(4);
+        }
+
+        // Atualizar o valor do campo de entrada
+        input.value = value;
+    }
+
+    function handlePurchase() {
+
+        const userId = localStorage.getItem('user_id');
+        const address = document.getElementById('adress').value;
+
+        processPurchase(userId, address);
+    }
+
+    function processPurchase(userId, address) {
+        const token = localStorage.getItem('token');
+
+  
+        if (token !== null && token !== undefined) {
+            console.log('Utilizador autenticado');
+
+            fetch('http://localhost:8000/api/username', {
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const userId = data.user_id;
+                    console.log('Nome do utilizador:', userId);
+                    console.log('Morada do utilizador:', address);
+
+                    fetch('http://localhost:8000/api/purchasehistory', {
+                        method: 'post',
+                        body: JSON.stringify({
+                            user_id: userId,
+                            address: address
+                        })
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log('Histórico de compras registrado com sucesso:', data);
+                        })
+                        .catch(error => {
+                            console.error('Erro ao registrar histórico de compras:', error);
+                        });
+                })
+                .catch(error => {
+                    console.error('Erro ao obter o nome do utilizador:', error);
+                });
+        } else {
+            console.log('Utilizador não autenticado');
+        }
+    }
+
+    var cartBadgeElement = document.getElementById('cart-badge');
+
+
+function updateCartBadge() {
+   // Obtém o número de itens do carrinho do armazenamento local
+   var cartItemCount = localStorage.getItem('cartItemCount');
+
+   // Verifica se o valor é válido e atualiza o conteúdo do elemento
+   if (cartItemCount && parseInt(cartItemCount) > 0) {
+      cartBadgeElement.textContent = cartItemCount;
+      cartBadgeElement.classList.remove('empty');
+      cartBadgeElement.style.display = ''; // Exibir o elemento
+   } else {
+      cartBadgeElement.textContent = '0';
+      cartBadgeElement.classList.add('empty');
+      cartBadgeElement.style.display = 'none'; // Ocultar o elemento
+   }
+}
+
+updateCartBadge();
+
+
+
+</script>
+
+</html>

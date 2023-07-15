@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Detalhes Produto</title>
+
+
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Estilos personalizados para a página de criação de produtos */
+    .container {
+      max-width: 550px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .custom-file-input {
+      display: none;
+      cursor: pointer;
+    }
+
+    /* Estilo personalizado para ocultar as setas do campo de número */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    form {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    select,
+    textarea {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    .half-width {
+      width: calc(50% - 5px);
+      margin-right: 10px;
+    }
+
+    input[type="number"],
+    input[type="abc"] {
+      height: 30px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .custom-button {
+      display: inline-block;
+      background-color: #0847a0;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .custom-button:hover {
+      background-color: #2e089f;
+    }
+
+    .blink {
+      animation: none;
+    }
+
+    .blink:hover {
+      animation: blink 0.5s infinite;
+    }
+
+    @keyframes blink {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    [disabled] {
+      cursor: not-allowed;
+      opacity: 5;
+      background-color: #f2f2f2;
+      color: #555555;
+    }
+
+    [disabled]:hover {
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div style="margin-left: -55%;">
+      <div class="header_top d_none1">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <ul class="conta_icon d_none1">
+                <div style="display: flex; align-items: center; justify-content: flex-start;">
+                  <a href="admmainpage.html" style="display: flex; align-items: center; text-decoration: none;"
+                    class="blink">
+                    <img src="favicon.ico" style="margin-right: 5px;">
+                    <h5 style="margin: 0;">AllInOneShop Administração</h5>
+                  </a>
+                </div>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <style>
+    .right-position {
+      position: relative;
+      left: 390px;
+      top: -39px;
+    }
+  </style>
+  <div class="container" style="text-align: left;">
+    <h1>Detalhes do Produto</h1>
+
+    <div>
+      <label for="name">Nome do Produto:</label>
+      <input autocomplete="off" type="text" id="name" disabled>
+    </div>
+    <div>
+      <label for="category">Categoria:</label>
+      <select id="category" disabled>
+        <option>Selecione uma opção</option>
+        <option>Roupa</option>
+        <option>Tecnologia</option>
+        <option>Acessorios</option>
+      </select>
+    </div>
+    <div style="display: flex;">
+      <div style="width: 50%;">
+        <label for="price">Preço:</label>
+        <div style="position: relative;">
+          <input type="number" id="price" style="padding-right: 20px; max-width: calc(200% - 20px);" disabled>
+          <span style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">€</span>
+        </div>
+      </div>
+      <div style="width: 50%; margin-left: 80px;">
+        <label for="quantity">Quantidade:</label>
+        <input type="number" id="quantity" disabled>
+      </div>
+    </div>
+    <div>
+      <label for="description">Descrição:</label>
+      <textarea id="description" rows="7" cols="50" disabled></textarea>
+    </div>
+    <div style="display: flex; justify-content: space-between;">
+      <div style="width: 50%;">
+        <input type="file" id="images[]" style="display: none;" accept="image/*" disabled>
+        <div style="position: relative; top: -310px; left: -300px;">
+          <div style="position: relative; left: -50px;">
+            <img id="preview-image" style="max-width: 200%; max-height: 300px;">
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+    <div class="row">
+      <div style="position: relative; top: -200px; ">
+        <div id="product-reviews" class="col-md-6">
+          <div style="position: relative; top: -20px;">
+            <h2 class="mb-4"> <strong>Comentários</strong< /h2>
+          </div>
+          <div id="comments-list"></div>
+          <div style=" text-align: right; height: 50%; position: relative; top: 20px;">
+            <button type="button" onclick="gotoproductpage()" class="custom-button">Voltar</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <style>
+
+      .t{
+        text-align: center;
+      }
+      .comment-count {
+        font-weight: bold;
+        color: #666;
+        margin-top: 10px;
+      }
+
+      .media {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 20px;
+      }
+
+      .media:last-child {
+        margin-bottom: 0;
+      }
+
+      .media-body {
+        margin-top: 10px;
+      }
+
+      .media-body h6 {
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+
+      .text-primary {
+        color: #007bff;
+      }
+
+      .fa-star {
+        color: #ffc107;
+      }
+
+      .no-comments-message {
+        color: #666;
+        font-style: italic;
+        margin-top: 10px;
+      }
+    </style>
+    <link rel="stylesheet" href="css/button.css">
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get('id');
+
+      if (productId) {
+        fetch(`http://localhost:8000/api/product/${productId}`)
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              const product = data.product;
+              document.getElementById("name").value = product.name;
+              document.getElementById("category").value = product.category;
+              document.getElementById("price").value = product.price;
+              document.getElementById("quantity").value = product.quantity;
+              document.getElementById("description").value = product.description;
+              const images = product.images;
+              if (images && images.length > 0) {
+                const imageUrl = `./uploads/${images[0].filename}`; // Use images[0].filename to get the file name
+                showPreviewImageFromURL(imageUrl);
+              }
+            } else {
+              console.error(data.error);
+              Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Erro ao obter informações do produto',
+                showConfirmButton: false,
+                timer: 1500
+              });
+            }
+          })
+          .catch(error => {
+            console.error(error);
+            Swal.fire({
+              position: 'top-end',
+              icon: 'error',
+              title: 'Erro ao obter informações do produto',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          });
+      } else {
+        console.error('ID do produto não fornecido na URL');
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'ID do produto não fornecido',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    });
+
+    function showPreviewImageFromURL(imageUrl) {
+      const previewImageElement = document.getElementById('preview-image');
+      const fileName = imageUrl.substring(imageUrl.lastIndexOf('/') + 1);
+      console.log('Nome da imagem:', fileName);
+      previewImageElement.src = imageUrl;
+      previewImageElement.style.border = '4px solid black'; // Adiciona borda preta de 2 pixels
+    }
+
+    var originalData = {};
+
+    function setOriginalData(data) {
+      originalData = {
+        name: data.name,
+        category: data.category,
+        price: data.price,
+        quantity: data.quantity,
+        description: data.description,
+      };
+    }
+
+    function getURLParameters() {
+      var urlParams = new URLSearchParams(window.location.search);
+      return Object.fromEntries(urlParams.entries());
+    }
+    // Função para buscar os comentários de um produto pelo ID
+    async function fetchComments(productId) {
+      const url = `http://localhost:8000/api/products/${productId}/comments`;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        return data.comments; // Supondo que a resposta da API tenha uma propriedade "comments" com os comentários
+      } catch (error) {
+        console.error('Erro ao buscar os comentários:', error);
+        return []; // Em caso de erro, retorna um array vazio
+      }
+    }
+
+    function displayComments(comments, userId) {
+      const reviewsContainer = document.getElementById('comments-list');
+      reviewsContainer.innerHTML = '';
+
+      if (comments.length === 0) {
+        const noCommentsMessage = document.createElement('p');
+        noCommentsMessage.className = 'no-comments-message';
+        noCommentsMessage.textContent = 'Ainda não existem comentários para este produto.';
+        reviewsContainer.appendChild(noCommentsMessage);
+        displayAverageRating(0); // Define a média como 0 quando não há comentários
+        return;
+      }
+
+      comments.forEach(comment => {
+        const media = document.createElement('div');
+        media.className = 'media mb-4';
+
+        const mediaBody = document.createElement('div');
+        mediaBody.className = 'media-body';
+
+        const userNameContainer = document.createElement('div');
+        userNameContainer.className = 'd-flex align-items-center justify-content-between';
+
+        const userName = document.createElement('h6');
+        userName.textContent = comment.user.name;
+
+        const ratingContainer = document.createElement('div');
+        ratingContainer.className = 'text-primary mb-2';
+
+        for (let i = 1; i <= 5; i++) {
+          const star = document.createElement('i');
+          star.className = i <= comment.rating ? 'fas fa-star' : 'far fa-star';
+          ratingContainer.appendChild(star);
+        }
+
+        const deleteButton = document.createElement('button');
+deleteButton.textContent = 'Eliminar';
+deleteButton.className = 'btn btn-delete right-position';
+
+// Adicione as classes CSS personalizadas
+deleteButton.style.backgroundColor = '#dc3545'; // Vermelho
+deleteButton.style.borderColor = '#dc3545';
+deleteButton.style.color = '#fff';
+deleteButton.style.borderRadius = '0.25rem';
+deleteButton.style.padding = '0.375rem 0.75rem';
+deleteButton.style.fontSize = '1rem';
+deleteButton.style.lineHeight = '1.5';
+deleteButton.style.cursor = 'pointer';
+deleteButton.style.textAlign = 'center'; // Centraliza o texto
+
+// Adicione o ícone
+const trashIcon = document.createElement('i');
+trashIcon.className = 'fas fa-trash';
+trashIcon.style.marginRight = '0.5rem';
+deleteButton.insertBefore(trashIcon, deleteButton.firstChild);
+        deleteButton.addEventListener('click', async () => {
+          Swal.fire({
+            title: 'Tem certeza?',
+            text: 'Esta ação não poderá ser desfeita!',
+            icon: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'Cancelar',
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#08bb26',
+            confirmButtonText: 'Sim, eliminar!'
+          }).then(async (result) => {
+            if (result.isConfirmed) {
+              try {
+                const deleteUrl = `http://localhost:8000/api/comment/${comment.id}`;
+                const deleteResponse = await fetch(deleteUrl, { method: 'DELETE' });
+                if (deleteResponse.ok) {
+                  media.remove();
+                  Swal.fire({
+                    title: 'Eliminado!',
+                    text: 'O seu comentário foi eliminado!',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 1500
+                  }).then(() => {
+                    window.location.hash = 'tab-pane-3';
+                    window.location.reload();
+                  });
+                } else {
+                  console.error('Erro ao excluir o comentário:', deleteResponse.status);
+                }
+              } catch (error) {
+                console.error('Erro ao excluir o comentário:', error);
+              }
+            } else {
+              event.preventDefault();
+            }
+          });
+        });
+
+        userNameContainer.appendChild(userName);
+        userNameContainer.appendChild(deleteButton);
+        mediaBody.appendChild(userNameContainer);
+        mediaBody.appendChild(ratingContainer);
+
+        const commentContent = document.createElement('p');
+        commentContent.textContent = comment.content;
+
+        mediaBody.appendChild(commentContent);
+        media.appendChild(mediaBody);
+
+        reviewsContainer.appendChild(media);
+      });
+    }
+
+    async function displayProductComments() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get('id');
+
+      if (!productId) {
+        console.error('ID do produto não fornecido na URL');
+        return;
+      }
+
+      const comments = await fetchComments(productId);
+      const userId = ''; // Defina a variável userId caso esteja disponível
+      displayComments(comments, userId);
+
+      const commentCountElement = document.getElementById('commentCount');
+      commentCountElement.textContent = `(${comments.length} Comentários)`;
+    }
+
+    displayProductComments();
+
+    function gotoproductpage() {
+      location.replace('productdetails.html')
+    }
+  </script>
+
+</body>
+
+</html>
